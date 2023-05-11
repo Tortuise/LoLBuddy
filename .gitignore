@@ -1,3 +1,7 @@
 *.log
 
 config/default.json
+
+todo.txt
+
+node_modules
