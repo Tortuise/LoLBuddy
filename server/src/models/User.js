@@ -27,13 +27,6 @@ const UserSchema = new mongoose.Schema({
     friends: {
         type: String
     },
-    hash: {
-        type: String
-    },
-    salt: {
-        type: String
-    }
-
-  },{timestamps: true});
+  });
   
   module.exports = User = mongoose.model('user', UserSchema);
