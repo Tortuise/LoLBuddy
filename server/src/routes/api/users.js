@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 // Load User model
-const User = require('../../models/Users');
+const User = require('../../models/User');
 
 // @route GET api/users/test
 // @description tests users route
@@ -57,3 +57,4 @@ router.delete('/:id', (req, res) => {
     .then(user => res.json({ mgs: 'User entry deleted successfully' }))
     .catch(err => res.status(404).json({ error: 'No such a user' }));
 });
+module.exports = router;

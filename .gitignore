@@ -1,7 +1,11 @@
+# env files
+.env
+
 *.log
 
 config/default.json
 
 todo.txt
 
+# Dependacies libraries
 node_modules
