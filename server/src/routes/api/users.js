@@ -2,6 +2,8 @@
 
 const express = require('express');
 const router = express.Router();
+require('dotenv').config();
+const axios = require('axios')
 
 // Load User model
 const User = require('../../models/User');
@@ -10,6 +12,35 @@ const User = require('../../models/User');
 // @description tests users route
 // @access Public
 router.get('/test', (req, res) => res.send('user route testing!'));
+
+// call RIOT API get player data
+function searchForPlayer(name) {
+	let server = "oc1"
+	let APICallString = "https://"+server+".api.riotgames.com/lol/summoner/v4/summoners/by-name/"+name+"?api_key="+process.env.REACT_APP_RIOT_API
+	return axios.get(APICallString).then(res => {
+    	return res.data
+
+  	}).catch(function (error){
+    	console.log(error)
+
+	});
+	
+
+}
+// @route GET api/users/name
+// @description use Riot API find summoner name of user
+// @access Public
+router.get('/name', async (req, res) => {
+	const player_name = req.query.username
+	try {
+		const name = await searchForPlayer(player_name)
+		res.send(name)
+	} catch(e) {
+		res.sendStatus(500)
+	}
+	
+});
+
 
 // @route GET api/users
 // @description Get all users
@@ -52,9 +83,11 @@ router.put('/:id', (req, res) => {
 // @route GET api/users/:id
 // @description Delete user by id
 // @access Public
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   User.findByIdAndRemove(req.params.id, req.body)
     .then(user => res.json({ mgs: 'User entry deleted successfully' }))
     .catch(err => res.status(404).json({ error: 'No such a user' }));
 });
+
+
 module.exports = router;

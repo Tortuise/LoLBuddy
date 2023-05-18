@@ -39,6 +39,12 @@ function ShowUsers() {
             >
               + Add New User
             </Link>
+            <Link
+              to='/search-user'
+              className='btn btn-outline-warning float-right'
+            >
+              Search User
+            </Link>
             <br />
             <br />
             <hr />

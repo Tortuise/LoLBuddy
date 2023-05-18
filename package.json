@@ -24,6 +24,7 @@
     "validation": "0.0.1"
   },
   "devDependencies": {
+    "dotenv-webpack": "^8.0.1",
     "nodemon": "^2.0.22"
   }
 }

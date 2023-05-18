@@ -17,7 +17,6 @@ const CreateUser = (props) => {
     };
 
     const onSubmit = (e) => {
-        console.log('submitting');
         e.preventDefault();
         axios
             .post('http://localhost:8082/api/users', user)
