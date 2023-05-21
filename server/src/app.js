@@ -7,6 +7,7 @@ require('dotenv').config();
 
 // routes
 const users = require('./routes/api/users');
+const auth = require('./routes/api/auth');
 
 
 const app = express();
@@ -19,12 +20,10 @@ app.use(cors());
 // Init Middleware
 app.use(express.json());
 
-app.get('/', (req, res) => res.send('Hello world!'));
 
-console.log("process " + process.env.NODE_ENV)
-console.log("test " + process.env.REACT_APP_TEST)
 // use Routes
 app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 const port = process.env.PORT || 8082;
 

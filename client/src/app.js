@@ -7,6 +7,8 @@ import ShowUsers from './components/ShowUsers';
 import UpdateUser from './components/UpdateUser';
 import ShowUserDetail from './components/ShowUserDetail';
 import SearchPlayer from './components/SearchPlayer'
+import Login from './pages/LoginUser'
+import Register from './pages/RegisterUser'
 
 const App = () => {
   return (
@@ -18,7 +20,8 @@ const App = () => {
           <Route path='/create-user' element={<CreateUser />} />
           <Route path='/edit-user/:id' element={<UpdateUser />} />
           <Route path='/show-user/:id' element={<ShowUserDetail />} />
-          
+          <Route path='/login' element={<Login/>} />
+          <Route path='/register' element={<Register/>} />
         </Routes>
       </div>
     </Router>

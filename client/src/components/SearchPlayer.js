@@ -39,6 +39,7 @@ const SearchPlayer = (props) => {
             </div>
             {JSON.stringify(playerData) != '{}' ? 
             <><h2>Player data found</h2>
+            <img width='100' height='100' src ={"http://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/" + playerData.profileIconId +".png"}></img>
             <h2>Name: {playerData.name}</h2>
             <h2>Level: {playerData.summonerLevel}</h2>
             </>
