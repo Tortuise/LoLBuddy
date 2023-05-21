@@ -2,16 +2,20 @@ import React , {useState} from 'react'
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import { useRegister } from '../hooks/useRegister';
+import { useNavigate } from 'react-router-dom';
+
 
 const Register = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const {register, isLoading, error} = useRegister()
-
+    const navigate = useNavigate();
+    
     //register function 
     const handleSubmit = async (e) => {
         e.preventDefault()
         await register({username, password})
+        navigate('/');
     };
 
     return (
