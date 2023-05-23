@@ -32,4 +32,23 @@ const registerUser = async (req, res) => {
         res.status(400).json({error: error.message})
     }
 }
-module.exports = {loginUser, registerUser}
+
+// set the user data with player data
+const setPlayerData = async (req, res) => {
+    console.log('params')
+    console.log(req.params)
+    User.findOneAndUpdate({username: req.params.username}, req.body)
+      .then(user => res.json({ msg: 'Updated successfully' }))
+      .catch(err =>
+        res.status(400).json({ error: 'Unable to update the Database' })
+        );
+};
+
+const getUser = (req, res) => {
+    const player_name = req.query.username
+    User.findOne({username: player_name})
+      .then(user => res.json(user))
+      .catch(err => res.status(404).json({ nousersfound: 'No User found' }));
+}
+
+module.exports = {loginUser, registerUser, setPlayerData, getUser}

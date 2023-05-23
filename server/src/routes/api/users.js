@@ -4,10 +4,17 @@ const express = require('express');
 const router = express.Router();
 require('dotenv').config();
 const axios = require('axios')
+const userController = require('../../controllers/userController')
 
 // Load User model
 const User = require('../../models/User');
 
+// Load Authentication function
+const requireAuth = require('../../middleware/requireAuth')
+// require Auth for all user routes
+
+router.use(requireAuth)
+console.log("authorized")
 // @route GET api/users/test
 // @description tests users route
 // @access Public
@@ -41,15 +48,15 @@ router.get('/name', async (req, res) => {
 	
 });
 
-
+// change to either get main acc or friends list
 // @route GET api/users
 // @description Get all users
 // @access Public
-router.get('/', (req, res) => {
-    User.find()
-      .then(users => res.json(users))
-      .catch(err => res.status(404).json({ nousersfound: 'No Users found' }));
-  });
+router.get('/', userController.getUser)
+  //   User.find()
+  //     .then(users => res.json(users))
+  //     .catch(err => res.status(404).json({ nousersfound: 'No Users found' }));
+  // });
 
 // @route GET api/users/:id
 // @description Get single User by id
@@ -72,13 +79,7 @@ router.post('/', (req, res) => {
 // @route GET api/users/:id
 // @description Update user
 // @access Public
-router.put('/:id', (req, res) => {
-  User.findByIdAndUpdate(req.params.id, req.body)
-    .then(user => res.json({ msg: 'Updated successfully' }))
-    .catch(err =>
-      res.status(400).json({ error: 'Unable to update the Database' })
-    );
-});
+router.put('/:username', userController.setPlayerData)
 
 // @route GET api/users/:id
 // @description Delete user by id

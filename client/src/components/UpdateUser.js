@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 function UpdateUserInfo(props) {
   const [user, setUser] = useState({

@@ -5,26 +5,39 @@ import { Link } from 'react-router-dom';
 import UserCard from './UserCard';
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useProfile } from '../hooks/useProfile';
 
 function ShowUsers() {
   const [users, setUsers] = useState([]);
   const {logout} = useLogout()
   const { user } = useAuthContext()
+  const {getUserData, userData} = useProfile()
 
   const handleClick = () => {
     logout()
   }
 
   useEffect(() => {
-    axios
-      .get('http://localhost:8082/api/users')
-      .then((res) => {
-        setUsers(res.data);
-      })
-      .catch((err) => {
-        console.log('Error from ShowUsers');
-      });
-  }, []);
+    if (user) {
+      getUserData(user.username)
+      // const config = {
+      //   headers:{
+      //     'Authorization': `Bearer ${user.token}`
+      //   },
+      //   params: {username: searchText}
+      // };
+
+      // axios
+      // .get('http://localhost:8082/api/users',config)
+      // .then((res) => {
+      //   setUsers(res.data);
+      // })
+      // .catch((err) => {
+      //   console.log('Error from ShowUsers');
+      // });
+    }
+    
+  }, [user]);
 
   const userList =
     users.length === 0

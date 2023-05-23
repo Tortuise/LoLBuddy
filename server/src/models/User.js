@@ -4,26 +4,20 @@ const mongoose = require('mongoose');
 const validator = require('validator')
 
 const UserSchema = new mongoose.Schema({
-    firstName: {
+    PUUID: {
     	type: String,
     },
-    lastName: {
+    SummonerName: {
     	type: String,
     },
-    dob: {
+    SummonerLvl: {
+        type: String,
+    },
+    ProfileIconId: {
     	type: String,
-    },
-    description: {
-    	type: String
-    },
-    email: {
-        type: String
-    },
-    hobbies: {
-    	type: String
     },
     friends: {
-        type: String
+        type: [String]
     },
     username: {
     	type: String,

@@ -8,16 +8,15 @@ const UserCard = (props) => {
   return (
     <div className='card-container'>
       <img
-        src= 'https://cdn.discordapp.com/attachments/211040675737763840/1107848678607171646/image.png'//'https://images.unsplash.com/photo-1495446815901-a7297e633e8d'
+        src= {"http://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/" + user.ProfileIconId +".png"}
         alt='Users'
         height={200}
       />
       <div className='desc'>
         <h2>
-          <Link to={`/show-user/${user._id}`}>{user.firstName}</Link>
+          <Link to={`/show-user/${user._id}`}>{user.SummonerName}</Link>
         </h2>
-        <h3>{user.lastName}</h3>
-        <p>{user.dob}</p>
+        <h3>{user.SummonerLvl}</h3>
       </div>
     </div>
   );
