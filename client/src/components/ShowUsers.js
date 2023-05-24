@@ -8,7 +8,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { useProfile } from '../hooks/useProfile';
 
 function ShowUsers() {
-  const [users, setUsers] = useState([]);
+  const [friendlist, setFriendList] = useState([]);
   const {logout} = useLogout()
   const { user } = useAuthContext()
   const {getUserData, userData} = useProfile()
@@ -20,29 +20,15 @@ function ShowUsers() {
   useEffect(() => {
     if (user) {
       getUserData(user.username)
-      // const config = {
-      //   headers:{
-      //     'Authorization': `Bearer ${user.token}`
-      //   },
-      //   params: {username: searchText}
-      // };
-
-      // axios
-      // .get('http://localhost:8082/api/users',config)
-      // .then((res) => {
-      //   setUsers(res.data);
-      // })
-      // .catch((err) => {
-      //   console.log('Error from ShowUsers');
-      // });
+      console.log(userData)
     }
     
   }, [user]);
 
-  const userList =
-    users.length === 0
-      ? 'there is no user record!'
-      : users.map((user, k) => <UserCard user={user} key={k} />);
+  const friends =
+    friendlist.length === 0
+      ? 'there is no friend record!'
+      : friendlist.map((friend, k) => <UserCard user={friend} key={k} />);
 
   
 
@@ -80,11 +66,12 @@ function ShowUsers() {
             )}
             <br />
             <br />
+            <UserCard user={userData}/>
             <hr />
           </div>
         </div>
         {user && (
-            <div className='list'>{userList}</div>
+            <div className='list'>{friends}</div>
           )}
       </div>
     </div>

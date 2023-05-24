@@ -35,8 +35,7 @@ const registerUser = async (req, res) => {
 
 // set the user data with player data
 const setPlayerData = async (req, res) => {
-    console.log('params')
-    console.log(req.params)
+  
     User.findOneAndUpdate({username: req.params.username}, req.body)
       .then(user => res.json({ msg: 'Updated successfully' }))
       .catch(err =>

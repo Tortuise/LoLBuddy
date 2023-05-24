@@ -14,7 +14,7 @@ const requireAuth = require('../../middleware/requireAuth')
 // require Auth for all user routes
 
 router.use(requireAuth)
-console.log("authorized")
+
 // @route GET api/users/test
 // @description tests users route
 // @access Public
