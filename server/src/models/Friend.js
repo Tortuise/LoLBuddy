@@ -9,11 +9,11 @@ const FriendSchema = new mongoose.Schema({
     	type: String,
         required : true,
     },
-    SummonerLevel: {
-        type: Number,
+    SummonerLvl: {
+        type: String,
         required : true,
     },
-    SummonerIconId: {
+    ProfileIconId: {
         type: String,
         required : true,
     },

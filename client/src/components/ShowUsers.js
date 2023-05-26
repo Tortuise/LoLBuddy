@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react';
 import '../App.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import UserCard from './UserCard';
+import FriendCard from './FriendCard';
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useProfile } from '../hooks/useProfile';
+import { useUserFriends } from '../hooks/useUserFriends';
 
 function ShowUsers() {
-  const [friendlist, setFriendList] = useState([]);
   const {logout} = useLogout()
   const { user } = useAuthContext()
   const {getUserData, userData} = useProfile()
+  const { getUserFriendsData, userFriendsData} = useUserFriends()
 
   const handleClick = () => {
     logout()
@@ -20,15 +21,15 @@ function ShowUsers() {
   useEffect(() => {
     if (user) {
       getUserData(user.username)
-      console.log(userData)
+      getUserFriendsData(user.username)
     }
     
   }, [user]);
 
   const friends =
-    friendlist.length === 0
+    userFriendsData.length === 0
       ? 'there is no friend record!'
-      : friendlist.map((friend, k) => <UserCard user={friend} key={k} />);
+      : userFriendsData.map((friend, k) => <FriendCard user={friend} key={k} />);
 
   
 
@@ -52,9 +53,6 @@ function ShowUsers() {
             {user && (
               <div>
                 <span>{user.username}</span>
-                <Link to='/create-user' className='btn btn-outline-warning float-right'>
-                  + Add New User
-                </Link>
                 <Link to='/search-user' className='btn btn-outline-warning float-right'>
                   Search User
                 </Link>
@@ -66,7 +64,7 @@ function ShowUsers() {
             )}
             <br />
             <br />
-            <UserCard user={userData}/>
+            <FriendCard user={userData}/>
             <hr />
           </div>
         </div>

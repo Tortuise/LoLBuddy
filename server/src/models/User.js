@@ -17,7 +17,7 @@ const UserSchema = new mongoose.Schema({
     	type: String,
     },
     friends: {
-        type: [String]
+        type: [String],
     },
     username: {
     	type: String,
@@ -28,6 +28,9 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+	followers: {
+		type: [String],
+	},
 });
 
 // static register method

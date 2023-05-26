@@ -3,7 +3,6 @@
   const mongoose = require('mongoose');
   const config = require('config');
   require('dotenv').config();
-  console.log("test "+process.env.NODE_ENV)
   const db = config.get('mongoURI')
   
   const connectDB = async () => {

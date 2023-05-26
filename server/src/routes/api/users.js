@@ -48,15 +48,11 @@ router.get('/name', async (req, res) => {
 	
 });
 
-// change to either get main acc or friends list
+
 // @route GET api/users
-// @description Get all users
+// @description Get user data
 // @access Public
 router.get('/', userController.getUser)
-  //   User.find()
-  //     .then(users => res.json(users))
-  //     .catch(err => res.status(404).json({ nousersfound: 'No Users found' }));
-  // });
 
 // @route GET api/users/:id
 // @description Get single User by id

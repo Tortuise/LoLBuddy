@@ -2,9 +2,6 @@ const express = require('express');
 const router = express.Router();
 const friendController = require('../../controllers/friendController')
 
-// Load Friend model
-const Friend = require('../../models/Friend');
-
 // Load Authentication function
 const requireAuth = require('../../middleware/requireAuth')
 // require Auth for all user routes
@@ -28,10 +25,16 @@ router.post('/', friendController.createFriend)
 // @route GET api/friends/:id
 // @description Update friend
 // @access Public
-router.put('/:id', (req, res) => {
-    Friend.findByIdAndUpdate(req.params.id, req.body)
-      .then(friend => res.json({ msg: 'Updated successfully' }))
-      .catch(err =>
-        res.status(400).json({ error: 'Unable to update the Database' })
-      );
-});
+// router.put('/:id', (req, res) => {
+//     Friend.findByIdAndUpdate(req.params.id, req.body)
+//       .then(friend => res.json({ msg: 'Updated successfully' }))
+//       .catch(err =>
+//         res.status(400).json({ error: 'Unable to update the Database' })
+//       );
+// });
+
+// @route DELETE api/users/:id
+// @description Delete user by id
+// @access Public
+router.delete('/:id', friendController.deleteFriend);
+module.exports = router;

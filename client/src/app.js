@@ -6,7 +6,7 @@ import { useAuthContext } from './hooks/useAuthContext';
 import CreateUser from './components/CreateUser';
 import ShowUsers from './components/ShowUsers';
 import UpdateUser from './components/UpdateUser';
-import ShowUserDetail from './components/ShowUserDetail';
+import ShowFriendDetail from './components/ShowFriendDetail';
 import SearchPlayer from './components/SearchPlayer'
 import Login from './pages/LoginUser'
 import Register from './pages/RegisterUser'
@@ -22,7 +22,7 @@ const App = () => {
           <Route path='/search-user' element={<SearchPlayer/>} />
           <Route path='/create-user' element={<CreateUser />} />
           <Route path='/edit-user/:id' element={<UpdateUser />} />
-          <Route path='/show-user/:id' element={<ShowUserDetail />} />
+          <Route path='/show-friend/:id' element={<ShowFriendDetail />} />
           <Route path='/login' element={!user ? <Login/> : <Navigate to='/'/>} />
           <Route path='/register' element={<Register/>} />
         </Routes>

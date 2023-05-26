@@ -64,6 +64,33 @@ const SearchPlayer = (props) => {
             });
     }
 
+    function addFriend(event) {
+        if (!user) {
+            console.log('Not Authorized')
+            return
+        }
+        const config = {
+            headers:{
+              'Authorization': `Bearer ${user.token}`
+            },
+            params: {username: user.username}
+        };
+        const data = {
+            PUUID: playerData.puuid,
+            SummonerName: playerData.name,
+            SummonerLvl: playerData.summonerLevel,
+            ProfileIconId: playerData.profileIconId,
+        };
+        axios
+            .post(`http://localhost:8082/api/friends/`, data, config)
+            .then((res) => {
+            navigate('/');
+            })
+            .catch((err) => {
+                console.log(err)
+            });
+    }
+
     return (
         <div className='Search'>
             <div className='container'>
@@ -85,6 +112,7 @@ const SearchPlayer = (props) => {
             <h2>Name: {playerData.name}</h2>
             <h2>Level: {playerData.summonerLevel}</h2>
             <button onClick={e=>setProfileData(e)}> Set as profile</button>
+            <button onClick={e=>addFriend(e)}>Add as Friend</button>
             </>
                 
             : <><h1>No player found</h1></>

@@ -8,7 +8,7 @@ require('dotenv').config();
 // routes
 const users = require('./routes/api/users');
 const auth = require('./routes/api/auth');
-
+const friends = require('./routes/api/friends');
 
 const app = express();
 
@@ -24,7 +24,9 @@ app.use(express.json());
 // use Routes
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+app.use('/api/friends', friends)
 
+console.log("test "+process.env.NODE_ENV)
 const port = process.env.PORT || 8082;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
