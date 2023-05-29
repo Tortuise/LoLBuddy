@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config();
 
 const createToken = (_id) => {
-    return jwt.sign({_id}, process.env.JWT_SECRET, {expiresIn: '1d'})
+    return jwt.sign({_id}, process.env.JWT_SECRET, {expiresIn: '3d'})
 }
 
 //login user
@@ -50,4 +50,18 @@ const getUser = (req, res) => {
       .catch(err => res.status(404).json({ nousersfound: 'No User found' }));
 }
 
-module.exports = {loginUser, registerUser, setPlayerData, getUser}
+// add follower (another user) to user
+const addUser = async (req, res) => {
+	const user = req.query.username
+    console.log('test');
+    console.log(req.body.username);
+	try {
+        const follower = await User.findOne({username: req.body.username})
+        await User.findOneAndUpdate({username: user},{$push:{followers:follower._id}})
+		res.json({ msg: 'Follower added successfully'})
+	} catch (err) {
+		console.log({err:err + ' error adding follower'})
+	}
+}
+
+module.exports = {loginUser, registerUser, setPlayerData, getUser, addUser}

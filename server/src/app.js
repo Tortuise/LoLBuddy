@@ -9,6 +9,7 @@ require('dotenv').config();
 const users = require('./routes/api/users');
 const auth = require('./routes/api/auth');
 const friends = require('./routes/api/friends');
+const followers = require('./routes/api/followers');
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/friends', friends)
+app.use('/api/followers', followers)
 
 console.log("test "+process.env.NODE_ENV)
 const port = process.env.PORT || 8082;

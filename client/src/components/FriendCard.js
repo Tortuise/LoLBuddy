@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import { useAuthContext } from '../hooks/useAuthContext';
 
-const UserCard = (props) => {
+const FriendCard = (props) => {
   const friend = props.user;
-
+  const { user } = useAuthContext()
+  
   return (
     <div className='card-container'>
       <img
@@ -23,4 +24,4 @@ const UserCard = (props) => {
   );
 };
 
-export default UserCard;
+export default FriendCard;

@@ -3,10 +3,12 @@ import '../App.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import FriendCard from './FriendCard';
+import UserCard from './UserCard'
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useProfile } from '../hooks/useProfile';
 import { useUserFriends } from '../hooks/useUserFriends';
+import NavComponent from './NavBar'
 
 function ShowUsers() {
   const {logout} = useLogout()
@@ -35,6 +37,7 @@ function ShowUsers() {
 
   return (
     <div className='ShowUsers'>
+      <NavComponent user={user} fixed="top" />
       <div className='container'>
         <div className='row'>
           <div className='col-md-12'>
@@ -53,18 +56,17 @@ function ShowUsers() {
             {user && (
               <div>
                 <span>{user.username}</span>
-                <Link to='/search-user' className='btn btn-outline-warning float-right'>
-                  Search User
+                <Link to='/search-player' className='btn btn-outline-warning float-right'>
+                  Search Player
                 </Link>
                 
                 <button className='btn btn-outline-warning float-right' onClick={handleClick}> Log Out</button>
                 
               </div>
-
             )}
             <br />
             <br />
-            <FriendCard user={userData}/>
+            <UserCard user={userData}/>
             <hr />
           </div>
         </div>
