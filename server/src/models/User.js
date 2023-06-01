@@ -31,6 +31,9 @@ const UserSchema = new mongoose.Schema({
 	followers: {
 		type: [String],
 	},
+	posts: {
+		type: [String],
+	},
 });
 
 // static register method

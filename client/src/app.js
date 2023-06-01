@@ -13,6 +13,7 @@ import Register from './pages/RegisterUser'
 import Profile from './pages/Profile'
 import About from './pages/About'
 import Followers from './pages/Followers'
+import Timeline from './pages/Timeline'
 
 const App = () => {
   const { user } = useAuthContext()
@@ -31,6 +32,7 @@ const App = () => {
           <Route path='/profile/:id' element={<Profile/>} />
           <Route path='/about' element={<About/>} />
           <Route path='/followers' element={<Followers/>} />
+          <Route path='/timeline' element={<Timeline/>} />
         </Routes>
       </div>
     </Router>

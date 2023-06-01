@@ -2,11 +2,12 @@ import React , {useState} from 'react'
 import { useAuthContext } from './useAuthContext'
 import axios from "axios";
 
-export const useAddUser = () => {
+export const usePosts = () => {
     const {user} = useAuthContext()
 
-    const addUser = async (searchText) =>  {
-        const follower = searchText
+    const createPost = async (postdata) =>  {
+        
+        console.log(postdata);
         if (!user) {
             console.log('Not Authorized')
             return
@@ -17,14 +18,13 @@ export const useAddUser = () => {
             },
             params: {username: user.username}
         };
-        const data = {
-            username: follower
-        };
+        
         axios
-            .post(`http://localhost:8082/api/followers/add`, data, config)
+            .post(`http://localhost:8082/api/posts/post`, postdata, config)
             .catch((err) => {
                 console.log(err)
             });
     } 
-    return {addUser}
+
+    return {createPost}
 }

@@ -9,6 +9,8 @@ const FriendCard = (props) => {
   
   return (
     <div className='card-container'>
+      {friend ?
+      <>
       <img
         src= {"http://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/" + friend.ProfileIconId +".png"}
         alt='Icon'
@@ -20,6 +22,11 @@ const FriendCard = (props) => {
         </h2>
         <h3>{friend.SummonerLvl}</h3>
       </div>
+      </> : 
+      <>
+      <p>No leagueoflegends Profile Set</p>
+      </>}
+      
     </div>
   );
 };

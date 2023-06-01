@@ -47,13 +47,6 @@ router.get('/name', async (req, res) => {
 	}
 	
 });
-
-
-// @route GET api/users
-// @description Get user data
-// @access Public
-router.get('/', userController.getUser)
-
 // @route GET api/users/:id
 // @description Get single User by id
 // @access Public
@@ -62,6 +55,13 @@ router.get('/:id', (req, res) => {
       .then(user => res.json(user))
       .catch(err => res.status(404).json({ nouserfound: 'No User found' }));
   });
+
+// @route GET api/users
+// @description Get user data
+// @access Public
+router.get('/', userController.getUser)
+
+
 
 // @route GET api/users
 // @description add/save user

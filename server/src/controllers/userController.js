@@ -45,6 +45,7 @@ const setPlayerData = async (req, res) => {
 
 const getUser = (req, res) => {
     const player_name = req.query.username
+
     User.findOne({username: player_name})
       .then(user => res.json(user))
       .catch(err => res.status(404).json({ nousersfound: 'No User found' }));
@@ -53,8 +54,6 @@ const getUser = (req, res) => {
 // add follower (another user) to user
 const addUser = async (req, res) => {
 	const user = req.query.username
-    console.log('test');
-    console.log(req.body.username);
 	try {
         const follower = await User.findOne({username: req.body.username})
         await User.findOneAndUpdate({username: user},{$push:{followers:follower._id}})
@@ -64,4 +63,25 @@ const addUser = async (req, res) => {
 	}
 }
 
-module.exports = {loginUser, registerUser, setPlayerData, getUser, addUser}
+// get all followers from user
+const getFollowers = async (req, res) => {
+    const user = req.query.username
+
+    try {
+        const followers = await User.findOne({username: user}).select('followers')
+        const followersData = []
+		for (let i = 0; i < followers.followers.length; i++) {
+			try {
+				let follower = await User.findById(followers.followers[i])
+				
+				followersData.push(follower)
+			} catch (err) {
+				console.log('error follower not found' )
+			}	
+		}
+		res.status(200).json(followersData)
+    } catch (err) {
+        console.log({err:err + ' error getting followers'});
+    }
+}
+module.exports = {loginUser, registerUser, setPlayerData, getUser, addUser, getFollowers}

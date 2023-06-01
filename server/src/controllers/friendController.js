@@ -20,6 +20,7 @@ const getAllFriend = async (req, res) => {
 		}
 		res.status(200).send(friendArr)
 	} catch (err) {
+		res.status(404).send([])
 		console.log({err:err, nofriendsfound: 'No Friends Yet :)))'})
 	}  
 }

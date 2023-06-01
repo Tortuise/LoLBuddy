@@ -9,7 +9,6 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 function NavComponent(props) {
-    //const { user } = useAuthContext()
     const {logout} = useLogout()
     const handleClick = () => {
         logout()
@@ -24,8 +23,8 @@ function NavComponent(props) {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="followers">Followers</Nav.Link>
-              <Nav.Link href="about">About</Nav.Link>
+              <Nav.Link href="/followers">Followers</Nav.Link>
+              <Nav.Link href="/about">About</Nav.Link>
             </Nav>
           </Navbar.Collapse>
           {user && (

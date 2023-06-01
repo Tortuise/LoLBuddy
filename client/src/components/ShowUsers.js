@@ -21,7 +21,9 @@ function ShowUsers() {
   }
 
   useEffect(() => {
-    if (user) {
+    if (!user) {
+      navigate('/login');
+    } else {
       getUserData(user.username)
       getUserFriendsData(user.username)
     }
@@ -59,9 +61,6 @@ function ShowUsers() {
                 <Link to='/search-player' className='btn btn-outline-warning float-right'>
                   Search Player
                 </Link>
-                
-                <button className='btn btn-outline-warning float-right' onClick={handleClick}> Log Out</button>
-                
               </div>
             )}
             <br />

@@ -106,3 +106,11 @@
     font-size: 1em;
     padding: 10px 0 10px 0;
 }
+
+.postcard-container {
+    width: 500px;
+    border: 1px solid rgba(0,0,.125);
+    margin: 0 auto;
+    border-radius: 5px;
+    overflow: hidden;
+}

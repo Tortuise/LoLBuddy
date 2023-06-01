@@ -16,11 +16,14 @@ const UserCard = (props) => {
     />
     <div className='desc'>
         <h2>
-        <Link to={`/profile/${userdata._id}`}>{userdata.SummonerName}</Link>
+        <Link to={`/profile/${userdata._id}`}>{userdata.username}</Link>
         </h2>
-        <h3>{userdata.SummonerLvl}</h3>
+        <h3>{userdata.SummonerName}</h3>
     </div></>
-    : <><p>No leagueoflegends Profile Set</p></>
+    : <>
+    <Link to={`/profile/${userdata._id}`}>{userdata.username}</Link>
+    <p>No leagueoflegends Profile Set</p>
+    </>
     }
     </div>
   );
