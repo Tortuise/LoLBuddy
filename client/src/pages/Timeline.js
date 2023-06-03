@@ -8,21 +8,44 @@ import { useProfile } from '../hooks/useProfile';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useAddUser } from '../hooks/useAddUser';
 import { useFollowers } from '../hooks/useFollowers';
+import { usePosts } from '../hooks/usePosts';
 
 const Timeline = () => {
     const { user } = useAuthContext()
     const {getUserFollowers, userFollowers} = useFollowers()
     const {getFollowersPosts, followersPosts} = useFollowers()
-    
+    const {getUserData, userData} = useProfile()
+    const { createPost } = usePosts()
+    const [postText, setPostText] = useState("")
 
     useEffect(() => {
         if (user) {
-          getUserFollowers(user.username)
+          async function fetchData() {
+
+            await getUserFollowers(user.username)
+          
+            await getUserData(user.username)
+            
+            await getFollowersPosts(user.username)
+          }
+          fetchData();
+
         }
         
     }, [user]);
 
-    const creatPost = async (e) => {
+  const onChange = (e) => {
+      setPostText({ ...postText, [e.target.name]: e.target.value });
+  };
+
+    const postSubmit = async (e) => {
+      const postdata = {
+        Text: postText,
+        Img: String,
+        username: user.username,
+        userId: userData._id
+      };
+      await createPost(postdata)
 
     };
 
@@ -36,6 +59,9 @@ const Timeline = () => {
         <div className='Followers'>
             <div className='container'>
                 <NavComponent fixed="top" />
+                <h1> Timeline</h1>
+                <input type='text post' onChange={onChange}></input>
+                <button onClick={e => postSubmit(e)}> Post </button>
             </div>
             {posts}
         </div>       

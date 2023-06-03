@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useLogout } from '../hooks/useLogout';
 import Container from 'react-bootstrap/Container';
@@ -10,8 +10,11 @@ import Navbar from 'react-bootstrap/Navbar';
 
 function NavComponent(props) {
     const {logout} = useLogout()
+    const navigate = useNavigate();
+    
     const handleClick = () => {
         logout()
+        navigate('/login')
       }
     const user = props.user
     

@@ -6,19 +6,21 @@ import { useAuthContext } from '../hooks/useAuthContext';
 const PostCard = (props) => {
   const postdata = props.post;
   const { user } = useAuthContext()
-
+  
   return (
     <div className='postcard-container'>
     { postdata != null ?
     <>
-    <h4>Posted at {postdata.createdAt.split('T')[0]}</h4>
+    {postdata.createdAt && 
+      <h4>Posted at {postdata.createdAt.split('T')[0]}</h4>
+    }
     {postdata.username && 
-    <Link to={`/profile/${userdata._id}`}>{userdata.username}</Link>
+    <Link to={`/profile/${postdata.userId}`}>{postdata.username}</Link>
     }
     {postdata.Img && 
     <img
         src= {postdata.Img}
-        alt='Icon'
+        alt='Post'
         height={200}
     />
     }

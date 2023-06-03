@@ -1,4 +1,3 @@
-const Friend = require('../models/Friend');
 const User = require('../models/User');
 const Post = require('../models/Post');
 
@@ -43,4 +42,33 @@ const deletePost = async (req, res) => {
 	}
 
 }
-module.exports = {createPost, deletePost, getPostsFromUser}
+
+// from user id get all posts from all user followers
+const getAllPosts = async (req, res) => {
+	try {
+		const data = await User.findOne({username:req.query.username}).select('followers') 
+		const followers = data.followers
+		const postData = []
+
+		for (let i = 0; i < followers.length; i++) {
+			try {
+				const posts = await User.findById(followers[i]).select('posts')
+
+				for (let j = 0; j < posts.posts.length; j++) {
+					const post = await Post.findById(posts.posts[j])
+					postData.push(post)
+				}
+			} catch (e) {
+				res.status(400).json({ error: e, msg:'unable to get follower posts'})
+			}
+			
+		}
+	
+        res.json(postData)
+	} catch(e) {
+		res.status(400).json({ error: 'Unable to get posts from followers' })
+	}
+
+
+}
+module.exports = {createPost, deletePost, getPostsFromUser, getAllPosts}
