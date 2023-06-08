@@ -12,6 +12,8 @@
   "author": "Kenny Ung",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.348.0",
+    "aws-sdk": "^2.1393.0",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
@@ -22,6 +24,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^5.4.0",
     "mongoose": "^7.1.0",
+    "multer": "^1.4.5-lts.1",
     "react-router-dom": "^6.11.1",
     "validation": "0.0.1",
     "validator": "^13.9.0"

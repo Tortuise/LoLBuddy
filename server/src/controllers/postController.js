@@ -1,5 +1,13 @@
+const AWS = require("aws-sdk");
+const fs = require("fs");
 const User = require('../models/User');
 const Post = require('../models/Post');
+
+
+const s3 = new AWS.S3({
+	accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID,
+	secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY,
+});
 
 // create post and add to user
 const createPost = async (req, res) => {
@@ -8,11 +16,14 @@ const createPost = async (req, res) => {
 		const post = await Post.create(req.body) 
         await User.findOneAndUpdate({username: username},{$push:{posts:post._id}})
         res.json({ msg: 'Post added successfully' , post: post})
+
+		
 	} catch(e) {
 		res.status(400).json({ error: 'Unable to add this Post' })
 	}
 }
 
+// get all posts from a user
 const getPostsFromUser = async (req, res) => {
     const id = req.params.id
 
@@ -20,7 +31,7 @@ const getPostsFromUser = async (req, res) => {
 		const posts = await User.findById(id) 
 		const postArr = []
 		for (let i = 0; i < posts.posts.length; i++) {
-			const post = await Post.findById(posts.posts[i])
+			let post = await Post.findById(posts.posts[i])
 			postArr.push(post)
 		}
         res.json(postArr)
@@ -46,16 +57,22 @@ const deletePost = async (req, res) => {
 // from user id get all posts from all user followers
 const getAllPosts = async (req, res) => {
 	try {
-		const data = await User.findOne({username:req.query.username}).select('followers') 
+		const data = await User.findOne({username:req.query.username}).select({followers: 1, posts: 1}) 
 		const followers = data.followers
 		const postData = []
+		const userPosts = data.posts
+		
+		for (let k = 0; k < userPosts.length; k++) {
+			let post = await Post.findById(userPosts[k])
+			postData.push(post)
+		}
 
 		for (let i = 0; i < followers.length; i++) {
 			try {
 				const posts = await User.findById(followers[i]).select('posts')
 
 				for (let j = 0; j < posts.posts.length; j++) {
-					const post = await Post.findById(posts.posts[j])
+					let post = await Post.findById(posts.posts[j])
 					postData.push(post)
 				}
 			} catch (e) {
@@ -63,7 +80,7 @@ const getAllPosts = async (req, res) => {
 			}
 			
 		}
-	
+
         res.json(postData)
 	} catch(e) {
 		res.status(400).json({ error: 'Unable to get posts from followers' })
@@ -71,4 +88,54 @@ const getAllPosts = async (req, res) => {
 
 
 }
-module.exports = {createPost, deletePost, getPostsFromUser, getAllPosts}
+
+const uploadImage = async (req, res) => {
+	const username = req.query.username
+	try {
+		if (!req.file) {
+		  throw new Error("no file");
+		}
+		const filename = username + req.file.filename;
+		const fileContent = fs.readFileSync(req.file.path);
+		const params = {
+			Bucket: process.env.BUCKET,
+			Key: `${filename}.png`,
+			Body: fileContent,
+			ContentType:'image/png',
+		};
+
+		s3.upload(params, function (err, data) {if (err) {
+			res.status(500);
+			res.json({message:err.message});
+			fs.unlinkSync(req.file.path);
+		  }
+		  if (data) {
+			res.status(200);
+			res.json(`${filename}.png`);
+		  }
+		});
+		fs.unlinkSync(req.file.path);
+	} catch (err) {
+		res.status(500).json(err);
+		if (req.file) {
+			fs.unlinkSync(req.file.path);
+		}
+	}
+}
+
+const getImage = async (req, res) => {
+	const data = req.query.data
+	try {
+		const signedUrl = s3.getSignedUrl('getObject',{
+			Bucket: process.env.BUCKET,
+			Key: data.Img,
+			Expires: 86400, // 24 hours
+		})
+		res.status(200).json(signedUrl)
+	} catch (e) {
+		res.status(500);
+		res.json({message:e.message});
+	}
+	
+}
+module.exports = {createPost, deletePost, getPostsFromUser, getAllPosts, uploadImage, getImage}

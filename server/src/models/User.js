@@ -28,7 +28,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-	followers: {
+	followers: { // people the user is following
+		type: [String],
+	},
+	following: { // people following the user
 		type: [String],
 	},
 	posts: {

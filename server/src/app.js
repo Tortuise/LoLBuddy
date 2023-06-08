@@ -22,7 +22,6 @@ app.use(cors());
 // Init Middleware
 app.use(express.json());
 
-
 // use Routes
 app.use('/api/users', users);
 app.use('/api/auth', auth);

@@ -17,6 +17,9 @@ const PostSchema = new mongoose.Schema({
     userId: {
         type: String,
     },
+    ProfileIconId: {
+        type: String,
+    },
 },{timestamps: true })
     
 
