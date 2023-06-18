@@ -7,12 +7,22 @@ import { useLogout } from '../hooks/useLogout';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { useProfile } from '../hooks/useProfile';
 
 function NavComponent(props) {
+    const navData = props.user;
     const {logout} = useLogout()
-    const {user} = useAuthContext();
+    const { user } = useAuthContext();
     const navigate = useNavigate();
-    
+    const {getUserData, userData} = useProfile()
+
+    useEffect(() => {
+      if (user) {
+        getUserData(user.username);
+      }
+      
+    }, [user]);
+
     const handleClick = () => {
         logout()
         navigate('/login')
@@ -30,12 +40,13 @@ function NavComponent(props) {
               <Nav.Link href="/followers">Followers</Nav.Link>
               <Nav.Link href="/timeline">Timeline</Nav.Link>
               <Nav.Link href="/about">About</Nav.Link>
+              <Nav.Link href="/settings">Settings</Nav.Link>
             </Nav>
           </Navbar.Collapse>
           {user && (
               <div>
-                <Navbar.Text>Signed in as: <a href="#login">{user.username}</a></Navbar.Text>
-                <button className='btn btn-outline-warning float-right' onClick={handleClick}> Log Out</button>
+                <Navbar.Text>Signed in as: <a href={"/profile/" + userData._id}>{user.username} </a></Navbar.Text>
+                <button className='btn btn-outline-warning float-right' onClick={handleClick}>Log Out</button>
               </div>
             )}
         </Container>

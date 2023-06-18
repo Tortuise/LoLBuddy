@@ -7,7 +7,7 @@ const createToken = (_id) => {
     return jwt.sign({_id}, process.env.JWT_SECRET, {expiresIn: '3d'})
 }
 
-//login user
+// login user
 const loginUser = async (req, res) => {
     const {username, password} = req.body
     try {
@@ -19,7 +19,7 @@ const loginUser = async (req, res) => {
     }
 }
 
-//register user
+// register user
 const registerUser = async (req, res) => {
     
     const {username, password} = req.body
@@ -28,6 +28,18 @@ const registerUser = async (req, res) => {
         const user = await User.register(username, password)
         const token = createToken(user._id)
         res.status(200).json({username, token})
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+
+// update password
+const updatePassword = async (req, res) => {
+    const username = req.query.username;
+    const {oldPassword, newPassword} = req.body
+    try {
+        const user = await User.changePassword(username,oldPassword, newPassword)
+        res.status(200).json({user})
     } catch (error) {
         res.status(400).json({error: error.message})
     }
@@ -84,4 +96,4 @@ const getFollowers = async (req, res) => {
         console.log({err:err + ' error getting followers'});
     }
 }
-module.exports = {loginUser, registerUser, setPlayerData, getUser, addUser, getFollowers}
+module.exports = {loginUser, registerUser, updatePassword, setPlayerData, getUser, addUser, getFollowers}

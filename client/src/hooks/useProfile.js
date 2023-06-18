@@ -42,7 +42,7 @@ export const useProfile = () => {
             setUserData(res.data);
           })
           .catch((err) => {
-            console.log('Error from getUserData');
+            console.log(err);
           });
       }
   }

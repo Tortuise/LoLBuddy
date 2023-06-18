@@ -1,14 +1,13 @@
 import axios from 'axios';
-import { useAuthContext } from './useAuthContext'
-
 const baseURL = process.env.REACT_APP_API_URL;
-const {user} = useAuthContext()
 
-const axiosClient = axios.create({
+
+const Axios = axios.create({
     baseURL,
     headers:{
-        'Authorization': `Bearer ${user.token}`
+      "content-type": "application/json",
       },
+    responseType: "json",
 });
 
-export default axiosClient
+export default Axios;

@@ -20,6 +20,9 @@ const PostSchema = new mongoose.Schema({
     ProfileIconId: {
         type: String,
     },
+    Likes: {
+        type: [String],
+    },
 },{timestamps: true })
     
 

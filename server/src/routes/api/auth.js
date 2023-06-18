@@ -10,16 +10,20 @@ router.get('/test', (req, res) => res.send('user route testing!'));
 
 // @route POST /api/auth
 // @description login user
-router.post('/login', userController.loginUser)
+router.post('/login', userController.loginUser);
 
 // @route POST api/auth
 // @description register user
-router.post('/register', userController.registerUser)
+router.post('/register', userController.registerUser);
 
-router.get('/refresh')
+// @route POST api/auth
+// @description update password
+router.put('/settings', userController.updatePassword);
+
+router.get('/refresh');
 
 
-router.post('/logout')
+router.post('/logout');
 
 
 module.exports = router;

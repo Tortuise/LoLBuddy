@@ -53,7 +53,17 @@ const deletePost = async (req, res) => {
 	}
 
 }
-
+// compare dates of posts objects
+function compare(a, b) {
+	if ( a.createdAt > b.createdAt) {
+		return -1;
+	}
+	if ( a.createdAt < b.createdAt) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
 // from user id get all posts from all user followers
 const getAllPosts = async (req, res) => {
 	try {
@@ -80,7 +90,8 @@ const getAllPosts = async (req, res) => {
 			}
 			
 		}
-
+		// sort all posts by createdAt date
+		postData.sort( compare )
         res.json(postData)
 	} catch(e) {
 		res.status(400).json({ error: 'Unable to get posts from followers' })
@@ -89,6 +100,7 @@ const getAllPosts = async (req, res) => {
 
 }
 
+// upload image to s3 bucket
 const uploadImage = async (req, res) => {
 	const username = req.query.username
 	try {
@@ -123,6 +135,7 @@ const uploadImage = async (req, res) => {
 	}
 }
 
+// get image from s3 bucket
 const getImage = async (req, res) => {
 	const data = req.query.data
 	try {
@@ -138,4 +151,24 @@ const getImage = async (req, res) => {
 	}
 	
 }
-module.exports = {createPost, deletePost, getPostsFromUser, getAllPosts, uploadImage, getImage}
+
+// add like to post and user
+const addLike = async (req, res) => {
+	const username = req.query.username;
+	try {
+		// check if already liked
+		const exist = await Post.exists({_id:req.body._id, Likes:username})
+		if (exist) {
+			res.status(200).json({msg:'already added like'})
+		} else {
+			await Post.findOneAndUpdate({_id: req.body._id},{$push:{Likes:username}})
+			await User.findOneAndUpdate({username: username},{$push:{Likes:req.body._id}})
+			res.status(200).json({msg:'added like'})
+		}
+		
+	} catch (e) {
+		console.log(e);
+		res.status(400).json({error:e})
+	}
+}
+module.exports = {createPost, deletePost, getPostsFromUser, getAllPosts, uploadImage, getImage, addLike}

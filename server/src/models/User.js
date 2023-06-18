@@ -37,18 +37,20 @@ const UserSchema = new mongoose.Schema({
 	posts: {
 		type: [String],
 	},
+	Likes: {
+		type: [String],
+	},
 });
 
 // static register method
 UserSchema.statics.register = async function (username, password) {
-	//console.log(username,password)
 	// validation 
 	if (!username || !password) {
 		throw Error('All fields must be filled')
 	}
 	if (!validator.isStrongPassword(password)) {
 		
-		throw Error('Password not strong enough')
+		throw Error('Password not strong enough minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1,')
 	}
 	const exists = await this.findOne({username})
 
@@ -82,5 +84,33 @@ UserSchema.statics.login = async function(username, password) {
 	}
 	return user
 
+}
+// static update method
+UserSchema.statics.changePassword = async function(username, oldPassword, newPassword) {
+	// validation
+	if (!oldPassword || !newPassword) {
+		throw Error('All fields must be filled')
+	}
+	const user = await this.findOne({username})
+	const match = await bcrypt.compare(oldPassword, user.password)
+	if (!match) {
+		throw Error('Incorrect current password')
+	}
+
+	const matchOld = await bcrypt.compare(newPassword, user.password)
+	if (matchOld) {
+		throw Error('Same password as current')
+	}
+
+	if (!validator.isStrongPassword(newPassword)) {
+		
+		throw Error('Password not strong enough minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1,')
+	}
+
+	const salt = await bcrypt.genSalt(10)
+	const hash = await bcrypt.hash(newPassword, salt)
+
+	const res = await this.updateOne({username:username}, {password: hash})
+	return res
 }
 module.exports = User = mongoose.model('user', UserSchema);

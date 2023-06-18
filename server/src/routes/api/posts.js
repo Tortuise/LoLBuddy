@@ -45,4 +45,10 @@ router.get('/:id', postController.getPostsFromUser)
 // @description delete post
 // @access Public
 router.delete('/:id', postController.deletePost)
+
+// @route PUT api/like/:id
+// @description add like to user and post
+// @access Public
+router.put('/like', postController.addLike)
+
 module.exports = router;

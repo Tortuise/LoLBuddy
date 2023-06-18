@@ -5,7 +5,11 @@ import axios from "axios";
 export const useFollowers = () => {
     const {user} = useAuthContext()
     const [userFollowers, setUserFollowers] = useState([])
-    const [followersPosts, setFollowersPosts] = useState([])
+    const [followersPosts, setFollowersPosts] = useState({
+      error:'',
+      isLoading: false,
+      data:[],
+    })
 
     const getUserFollowers = async (username) => {
         if (user) {
@@ -30,6 +34,11 @@ export const useFollowers = () => {
 
     // for all followers put all posts in list and sort by date created
     const getFollowersPosts = async (event) =>  {
+      setFollowersPosts(prev => ({
+        ...prev,
+        isLoading: true,
+      }));
+
       if (user) {
         const config = {
           headers:{
@@ -41,12 +50,13 @@ export const useFollowers = () => {
         try {
           const response = await axios.get(`http://localhost:8082/api/posts/all/`,config)
           
-          setFollowersPosts(response.data)
+          setFollowersPosts({isLoading: false, error: '', data: response.data})
         } catch (e) {
+          setFollowersPosts({isLoading: false, error: 'error getting follower posts'})
           console.log(e);
         }
 
       }
     }
-    return {getUserFollowers, getFollowersPosts, userFollowers, followersPosts}
+    return {getUserFollowers, getFollowersPosts, userFollowers, ...followersPosts}
 }

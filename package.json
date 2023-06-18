@@ -7,12 +7,16 @@
     "start": "node server/src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "app": "nodemon server/src/app.js"
+    "app": "nodemon server/src/app.js",
+    "start-client": "cd client && npm run start"
   },
   "author": "Kenny Ung",
   "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.348.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.4",
     "aws-sdk": "^2.1393.0",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",

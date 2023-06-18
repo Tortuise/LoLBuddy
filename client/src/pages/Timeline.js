@@ -12,10 +12,9 @@ import { usePosts } from '../hooks/usePosts';
 
 const Timeline = () => {
     const { user } = useAuthContext()
-    const {getUserFollowers, userFollowers} = useFollowers()
-    const {getFollowersPosts, followersPosts} = useFollowers()
+    const {getFollowersPosts, isLoading: followersLoading, error: followersError, data: followersData} = useFollowers()
     const {getUserData, userData} = useProfile()
-    const { createPost, uploadPost, isLoading, error: postError, url } = usePosts()
+    const { createPost, uploadPost, addLike, isLoading, error: postError, url } = usePosts()
     const [postText, setPostText] = useState({
       text: '',
       img:'',
@@ -24,15 +23,12 @@ const Timeline = () => {
       preview: '',
       data:'',
   })
-    const [posted, setPosted] = useState(false)
     const [error, setError] = useState('')
-    const validTypes = ['image/jpg', 'imag/png', 'image/jpeg']
+    const validTypes = ['image/jpg', 'image/png', 'image/jpeg']
 
     useEffect(() => {
         if (user) {
           async function fetchData() {
-
-            await getUserFollowers(user.username)
           
             await getUserData(user.username)
             
@@ -41,13 +37,10 @@ const Timeline = () => {
           fetchData();
 
         }
-        
     }, [user]);
 
     const onChange = (e) => {
         setPostText({ ...postText, [e.target.name]: e.target.value });
-        console.log(postText);
-        console.log(url);
     };
 
     const postSubmit = async (e) => {
@@ -59,9 +52,7 @@ const Timeline = () => {
         ProfileIconId: userData.ProfileIconId,
         Img: url,
       };
-      console.log(postdata);
       await createPost(postdata);
-      setPosted(true);
     };
 
     const handleUpload = async (e) => {
@@ -83,9 +74,9 @@ const Timeline = () => {
     }
 
     const posts =
-    followersPosts.length === 0
+    followersData.length === 0
       ? 'there is no posts record!'
-      : followersPosts.map((post, k) => <PostCard post={post} key={k} />);
+      : followersData.map((post, k) => <PostCard post={post} key={k} />);
 
 
     return (  
@@ -110,6 +101,8 @@ const Timeline = () => {
                 <br></br>
                 <button onClick={e => postSubmit(e)}> Post </button>
             </div>
+            {followersError && <div className='error'>{followersError}</div>}
+            {followersLoading && <p>Loading...</p>}
             {posts}
         </div>       
         )

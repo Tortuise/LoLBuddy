@@ -3,35 +3,22 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useProfile } from '../hooks/useProfile';
 
 function UpdateUserInfo(props) {
-  const [user, setUser] = useState({
-    firstName: '',
-    lastName: '',
-    dob: '',
-    description: '',
-    email: '',
-    hobbies: '',
-    friends: '',
+  const [data, setData] = useState({
+    password:'',
   });
-
+  const { user } = useAuthContext();
   const { id } = useParams();
   const navigate = useNavigate();
+  const {getUserData, userData} = useProfile();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8082/api/users/${id}`)
-      .then((res) => {
-        setUser({
-          firstName: res.data.firstName,
-          lastName: res.data.lastName,
-          dob: res.data.dob,
-        });
-      })
-      .catch((err) => {
-        console.log('Error from UpdateUserInfo');
-      });
-  }, [id]);
+    if (user) {
+      getUserData(user.username);
+    }
+  }, [user]);
 
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -45,15 +32,7 @@ function UpdateUserInfo(props) {
         lastName: user.lastName,
         dob: user.dob,
     };
-
-    axios
-      .put(`http://localhost:8082/api/users/${id}`, data)
-      .then((res) => {
-        navigate(`/show-user/${id}`);
-      })
-      .catch((err) => {
-        console.log('Error in UpdateUserInfo!');
-      });
+    
   };
 
   return (

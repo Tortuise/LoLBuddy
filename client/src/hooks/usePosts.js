@@ -1,6 +1,7 @@
 import React , {useState} from 'react'
 import { useAuthContext } from './useAuthContext'
 import axios from "axios";
+import Axios from '../config/axios'
 
 export const usePosts = () => {
     const {user} = useAuthContext()
@@ -95,6 +96,26 @@ export const usePosts = () => {
         });
     }
 
+    const addLike = async (data) => {
+        const config = {
+            headers:{
+            'Authorization': `Bearer ${user.token}`
+            },
+            params: {username:user.username}
+        };
+        const putData = {_id:data};
 
-    return {createPost, uploadPost, getImage, ...state, ...image}
+        await Axios.put(`/posts/like`,putData, config)
+        .then((res) => {
+            console.log(res.data);
+            return res.data;
+        })
+        .catch((err) => {
+            
+            console.log(err)
+        });
+    }
+
+
+    return {createPost, uploadPost,addLike, getImage, ...state, ...image}
 }

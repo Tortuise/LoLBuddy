@@ -14,8 +14,11 @@ const Profile = () => {
     const { id } = useParams();
     useEffect(() => {
         if (user) {
-          getUserDataById(id)
-          getPostsFromUser(id)
+          async function fetchData() {
+            await getUserDataById(id);
+            await getPostsFromUser(id);
+          }
+          fetchData();
         }
         
       }, [user]);
@@ -30,11 +33,9 @@ const Profile = () => {
       ? 'there are no posts from this user'
       : posts.map((post, k) => <PostCard post={post} key={k} />);
 
-
     return (
         <div>
-            <NavComponent user={user} fixed="top" />
-            <p>Test</p>
+            <NavComponent fixed="top" />
             <UserCard user={userData}/>
             <h2>Posts from this user</h2>
             {postList}

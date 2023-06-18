@@ -23,11 +23,11 @@ export const useRegister= () => {
             
             dispatch({type: 'LOGIN', payload: json})
             setIsLoading(false)
-        
+            return true;
         } catch(error) {
-            console.log(error)
             setIsLoading(false)
             setError(error.response.data.error)
+            return false;
         }
         
     }

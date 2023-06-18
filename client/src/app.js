@@ -4,16 +4,17 @@ import './App.css';
 import { useAuthContext } from './hooks/useAuthContext';
 
 import CreateUser from './components/CreateUser';
-import ShowUsers from './components/ShowUsers';
 import UpdateUser from './components/UpdateUser';
-import ShowFriendDetail from './components/ShowFriendDetail';
-import SearchPlayer from './pages/SearchPlayer'
-import Login from './pages/LoginUser'
-import Register from './pages/RegisterUser'
-import Profile from './pages/Profile'
-import About from './pages/About'
-import Followers from './pages/Followers'
-import Timeline from './pages/Timeline'
+import ShowFriendDetail from './pages/ShowFriendDetail';
+import SearchPlayer from './pages/SearchPlayer';
+import Login from './pages/LoginUser';
+import Register from './pages/RegisterUser';
+import Profile from './pages/Profile';
+import About from './pages/About';
+import Followers from './pages/Followers';
+import Timeline from './pages/Timeline';
+import ShowUsers from './pages/ShowUsers';
+import Settings from './pages/Settings';
 
 const App = () => {
   const { user } = useAuthContext()
@@ -33,6 +34,7 @@ const App = () => {
           <Route path='/about' element={<About/>} />
           <Route path='/followers' element={<Followers/>} />
           <Route path='/timeline' element={<Timeline/>} />
+          <Route path='/settings' element={<Settings/>} />
         </Routes>
       </div>
     </Router>
