@@ -21,7 +21,7 @@ const MatchCard = (props) => {
     return (
     <li> 
       <img 
-        src= {"http://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/" + data.data.profileIcon +".png"}
+        src= {"http://ddragon.leagueoflegends.com/cdn/13.12.1/img/champion/" + data.data.championName + ".png"}
         height={20}
         width={20}
       />
@@ -31,8 +31,11 @@ const MatchCard = (props) => {
   }
 
   function PlayerInfo() { 
-    const listPlayers = match.info.participants.map((data,k) => <PlayerData data={data} key={k}/>)
-    return <ul class="table">{listPlayers}</ul>
+    const team1 = match.info.participants.slice(0,5);
+    const team2 = match.info.participants.slice(5,10);
+    const listTeam1 = team1.map((data,k) => <PlayerData data={data} key={k}/>)
+    const listTeam2 = team2.map((data,k) => <PlayerData data={data} key={k}/>)
+    return <div className="table"><ul>{listTeam1}</ul><ul>{listTeam2}</ul></div>
   }
 
   return (

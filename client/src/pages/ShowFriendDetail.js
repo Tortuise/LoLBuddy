@@ -19,9 +19,6 @@ function ShowFriendDetails(props) {
         await findFriend(id); 
       }
       fetchData();
-      if (matchData) {
-        console.log(matchData);
-      }
     }
   },[id, matchData]);
 
@@ -39,13 +36,27 @@ function ShowFriendDetails(props) {
       ? 'no match history found'
       : matchData.map((match, k) => <MatchCard match={{match: match,profileName:friendData.SummonerName}} key={k} />);
 
+  function Winrate() {
+    let wins = 0;
+    for (let i=0;i<matchData.length;i++) {
+      for (let j=0;j<matchData[i].info.participants.length;j++) {
+        let player = matchData[i].info.participants[j];
+        if (player.summonerName === friendData.SummonerName && player.win) {
+          wins += 1;
+        }
+      }
+    }
+    
+    return <a>winrate = {wins/matchData.length * 100}%</a>
+  }
+  
+
   return (
     <div className='ShowFriendDetails'>
       <div className='container'>
         <div className='row'>
           <div className='col-md-10 m-auto'>
-            <br /> <br />
-            <Link to='/' className='btn btn-outline-warning float-left'>
+            <Link to='/' className='btn btn-primary'>
               Show Friend List
             </Link>
           </div>
@@ -62,21 +73,21 @@ function ShowFriendDetails(props) {
             <div className='col-md-6 m-auto'>
               <button
                 type='button'
-                className='btn btn-outline-info btn-lg btn-block'
+                className='btn btn-primary'
                 onClick={() => {
                   setDisplayMatch(false);
                 }}
               >
-                Edit summoner
+                Close
               </button>
+              <Winrate/>
               {matchList}
-
             </div>
           : 
             <div className='col-md-6 m-auto'>
               <button
                 type='button'
-                className='btn btn-outline-warning btn-lg btn-block'
+                className='btn btn-primary'
                 disabled={isLoadingMatch||isLoading}
                 onClick={() => {
                   matchHistory(friendData);
@@ -87,14 +98,14 @@ function ShowFriendDetails(props) {
             <button
               type='button'
               to={`/edit-friendData/${id}`}
-              className='btn btn-outline-info btn-lg btn-block'
+              className='btn btn-primary'
               disabled={isLoading}
             >
               Edit Friend
             </button>
             <button
               type='button'
-              className='btn btn-outline-danger btn-lg btn-block'
+              className='btn btn-danger'
               onClick={() => {
                 onDeleteClick(friendData);
               }}
