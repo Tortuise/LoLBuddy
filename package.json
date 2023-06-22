@@ -2,14 +2,15 @@
   "name": "mern_app",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "./server/src/app.js",
   "scripts": {
     "start": "node server/src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "app": "nodemon server/src/app.js",
     "start-client": "cd client && npm run start",
-    "build": "react-scripts build"
+    "build": "npm i && cd ../client && npm i && npm run build"
+
   },
   "author": "Kenny Ung",
   "license": "ISC",
