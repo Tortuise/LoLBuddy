@@ -17,7 +17,11 @@ const app = express();
 connectDB();
 
 // cors
-app.use(cors());
+app.use(cors(
+    {
+        origin: ['https://lolbuddyserver.onrender.com/']
+    }
+));
 
 // Init Middleware
 app.use(express.json());
