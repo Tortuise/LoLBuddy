@@ -17,8 +17,8 @@ client/node_modules/
 .env.production.local
 .env.development
 .env.production
-client/.env.development/
-client/.env.production/
+./client/.env.development/
+./client/.env.production/
 
 npm-debug.log*
 yarn-debug.log*
