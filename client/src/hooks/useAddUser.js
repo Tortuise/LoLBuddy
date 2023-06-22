@@ -1,6 +1,6 @@
 import React , {useState} from 'react'
 import { useAuthContext } from './useAuthContext'
-import axios from "axios";
+import Axios from '../config/axios';
 
 export const useAddUser = () => {
     const {user} = useAuthContext()
@@ -20,8 +20,8 @@ export const useAddUser = () => {
         const data = {
             username: follower
         };
-        axios
-            .post(`http://localhost:8082/api/followers/add`, data, config)
+        Axios
+            .post(`/followers/add`, data, config)
             .catch((err) => {
                 console.log(err)
             });

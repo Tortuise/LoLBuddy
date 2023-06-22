@@ -1,6 +1,6 @@
 import React , {useState} from 'react'
 import { useAuthContext } from './useAuthContext'
-import axios from "axios";
+import Axios from '../config/axios';
 
 export const useFollowers = () => {
     const {user} = useAuthContext()
@@ -21,8 +21,8 @@ export const useFollowers = () => {
               params: {username: username}
             };
       
-            axios
-            .get('http://localhost:8082/api/followers/showAll',config)
+            Axios
+            .get('/followers/showAll',config)
             .then((res) => {
                 setUserFollowers(res.data);
             })
@@ -48,7 +48,7 @@ export const useFollowers = () => {
         };
         const posts = []
         try {
-          const response = await axios.get(`http://localhost:8082/api/posts/all/`,config)
+          const response = await Axios.get(`/posts/all/`,config)
           
           setFollowersPosts({isLoading: false, error: '', data: response.data})
         } catch (e) {

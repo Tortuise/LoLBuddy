@@ -1,6 +1,6 @@
 import React , {useState} from 'react'
 import { useAuthContext } from './useAuthContext'
-import axios from "axios";
+import Axios from '../config/axios';
 
 export const useProfile = () => {
     const {user} = useAuthContext()
@@ -17,8 +17,8 @@ export const useProfile = () => {
               params: {username: username}
             };
       
-            axios
-            .get('http://localhost:8082/api/users',config)
+            Axios
+            .get('/users',config)
             .then((res) => {
               setUserData(res.data);
             })
@@ -36,8 +36,8 @@ export const useProfile = () => {
             },
           };
     
-          axios
-          .get(`http://localhost:8082/api/users/${id}`,config)
+          Axios
+          .get(`/users/${id}`,config)
           .then((res) => {
             setUserData(res.data);
           })
@@ -56,8 +56,8 @@ export const useProfile = () => {
           },
         };
   
-        axios
-        .get(`http://localhost:8082/api/posts/${id}`,config)
+        Axios
+        .get(`/posts/${id}`,config)
         .then((res) => {
           setPosts(res.data);
         })

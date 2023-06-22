@@ -92,7 +92,7 @@ export const useFriends = () => {
                 },
                 params: {username: user.username}
             };
-            Axios.delete(`http://localhost:8082/api/friends/${id}`, config)
+            Axios.delete(`/friends/${id}`, config)
             .then((res) => {
                 navigate('/');
             })

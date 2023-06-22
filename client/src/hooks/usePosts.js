@@ -1,7 +1,6 @@
-import React , {useState} from 'react'
-import { useAuthContext } from './useAuthContext'
-import axios from "axios";
-import Axios from '../config/axios'
+import React , {useState} from 'react';
+import { useAuthContext } from './useAuthContext';
+import Axios from '../config/axios';
 
 export const usePosts = () => {
     const {user} = useAuthContext()
@@ -34,8 +33,8 @@ export const usePosts = () => {
             params: {username: user.username}
         };
         
-        axios
-            .post(`http://localhost:8082/api/posts/post`, postdata, config)
+        Axios
+            .post(`/posts/post`, postdata, config)
             .then(() => setState({isLoading: false, error: ''}))
             .catch((err) => {
                 setState({isLoading: false, error: err.message})
@@ -61,8 +60,8 @@ export const usePosts = () => {
             },
             params: {username: user.username}
         };
-        axios
-            .post(`http://localhost:8082/api/posts/image`, data, config)
+        Axios
+            .post(`/posts/image`, data, config)
             .then((res) => {
                 setState({isLoading: false, error: '', url: res.data})
             })
@@ -85,7 +84,7 @@ export const usePosts = () => {
             params: {data:data}
         };
 
-        await axios.get(`http://localhost:8082/api/posts/image`, config)
+        await Axios.get(`/posts/image`, config)
         .then((res) => {
             setImage({isLoading: false, error: '', data: res.data})
             return res.data;

@@ -1,6 +1,6 @@
 import React , {useState} from 'react'
 import { useAuthContext } from './useAuthContext'
-import axios from "axios";
+import Axios from '../config/axios';
 
 export const useUserFriends = () => {
     const {user} = useAuthContext()
@@ -16,8 +16,8 @@ export const useUserFriends = () => {
               params: {username: username}
             };
       
-            axios
-            .get('http://localhost:8082/api/friends',config)
+            Axios
+            .get('/friends',config)
             .then((res) => {
               setUserFriendsData(res.data);
             })

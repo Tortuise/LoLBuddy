@@ -1,6 +1,6 @@
 import React , {useState} from 'react'
 import { useAuthContext } from './useAuthContext'
-import axios from "axios";
+import Axios from '../config/axios';
 
 export const useRegister= () => {
     const [error, setError] = useState(null)
@@ -12,7 +12,7 @@ export const useRegister= () => {
         setError(null)
         try {
             //console.log(username,password)
-            const response = await axios.post("http://localhost:8082/api/auth/register",{username, password} )
+            const response = await Axios.post("/auth/register",{username, password} )
             
             
             const json = response.data
