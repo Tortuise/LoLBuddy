@@ -9,7 +9,7 @@
     "heroku-postbuild": "cd client && npm install && npm run build",
     "app": "nodemon server/src/app.js",
     "start-client": "cd client && npm run start",
-    "build": "npm i && cd ../client && npm i && npm run build"
+    "build": "npm i && cd ./client && npm i && npm run build"
 
   },
   "author": "Kenny Ung",
