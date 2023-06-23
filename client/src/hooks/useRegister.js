@@ -11,7 +11,8 @@ export const useRegister= () => {
         setIsLoading(true)
         setError(null)
         try {
-            //console.log(username,password)
+            console.log(username,password)
+            console.log('connecting to:'+process.env.REACT_APP_API_URL);
             const response = await Axios.post("/auth/register",{username, password} )
             
             
