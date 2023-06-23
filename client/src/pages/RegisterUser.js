@@ -30,8 +30,6 @@ const Register = () => {
                 <label>Password</label>
                 <input type = "password" onChange={(e) => setPassword(e.target.value)} value={password}/>
                 <button disabled={isLoading}>Register</button>
-                
-                
                 {error && <div className='error'>{error}</div>}
             </form>
         </div>

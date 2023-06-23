@@ -18,9 +18,9 @@ connectDB();
 
 // cors
 app.use(cors(
-    {
-        origin: ['https://lolbuddyserver.onrender.com/']
-    }
+    // {
+    //     origin: ['https://lolbuddyserver.onrender.com/','http://localhost:8082/']
+    // }
 ));
 
 // Init Middleware
