@@ -5,8 +5,6 @@ require('dotenv').config();
 const multer = require("multer");
 const upload = multer({dest: "uploads/" });
 
-const axios = require('axios')
-const userController = require('../../controllers/userController')
 const postController = require('../../controllers/postController')
 
 

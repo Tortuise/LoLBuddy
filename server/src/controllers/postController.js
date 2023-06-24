@@ -105,7 +105,8 @@ const uploadImage = async (req, res) => {
 	const username = req.query.username
 	try {
 		if (!req.file) {
-		  throw new Error("no file");
+			console.log('no file');
+		  	throw new Error("no file");
 		}
 		const filename = username + req.file.filename;
 		const fileContent = fs.readFileSync(req.file.path);
@@ -115,10 +116,10 @@ const uploadImage = async (req, res) => {
 			Body: fileContent,
 			ContentType:'image/png',
 		};
-
 		s3.upload(params, function (err, data) {if (err) {
 			res.status(500);
-			res.json({message:err.message});
+			console.log(err);
+			res.json({err:err});
 			fs.unlinkSync(req.file.path);
 		  }
 		  if (data) {

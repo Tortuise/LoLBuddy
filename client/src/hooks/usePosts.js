@@ -56,10 +56,12 @@ export const usePosts = () => {
 
         const config = {
             headers:{
-            'Authorization': `Bearer ${user.token}`
+            'Authorization': `Bearer ${user.token}`,
+            'Content-Type': 'multipart/form-data'// this took forever to fix fk me
             },
             params: {username: user.username}
         };
+
         Axios
             .post(`/posts/image`, data, config)
             .then((res) => {

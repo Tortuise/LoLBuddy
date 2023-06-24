@@ -25,6 +25,7 @@ const Timeline = () => {
   })
     const [error, setError] = useState('')
     const validTypes = ['image/jpg', 'image/png', 'image/jpeg']
+    const [posted, setPosted] = useState(false);
 
     useEffect(() => {
         if (user) {
@@ -37,7 +38,7 @@ const Timeline = () => {
           fetchData();
 
         }
-    }, [user]);
+    }, [user, posted, followersData]);
 
     const onChange = (e) => {
         setPostText({ ...postText, [e.target.name]: e.target.value });
@@ -71,6 +72,8 @@ const Timeline = () => {
       const form = new FormData();
       form.append('image', img.data);
       await uploadPost(form);
+      setPosted(true);
+      setPosted(false);
     }
 
     const posts =
@@ -102,8 +105,8 @@ const Timeline = () => {
                 <button onClick={e => postSubmit(e)}> Post </button>
             </div>
             {followersError && <div className='error'>{followersError}</div>}
-            {followersLoading && <p>Loading...</p>}
             {posts}
+            {followersLoading && <p>Loading...</p>}
         </div>       
         )
 }
