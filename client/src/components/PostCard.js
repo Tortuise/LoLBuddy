@@ -25,7 +25,7 @@ const PostCard = (props) => {
 
   function Item() {
     if (user.username === postdata.username) {
-      return <Link to={`/profile/${postdata.userId}`}>{postdata.username} &lt;you&gt;</Link>
+      return <Link to={`/profile/${postdata.userId}`}>You</Link>
 
     }
     return <Link to={`/profile/${postdata.userId}`}>{postdata.username} </Link>
@@ -40,7 +40,7 @@ const PostCard = (props) => {
       <h3 className='postcard-username'>
         <img 
           className='postcard_icon'
-          src={"http://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/" + postdata.ProfileIconId +".png"}
+          src={"https://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/" + postdata.ProfileIconId +".png"}
         ></img>
         <Item/>
       </h3>

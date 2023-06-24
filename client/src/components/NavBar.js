@@ -29,12 +29,12 @@ function NavComponent(props) {
     
     
     return (
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="dark" variant="dark" data-bs-theme="dark" >
         <Container>
           <Navbar.Brand href="/">MERN_APP</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="me-auto" >
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/followers">Followers</Nav.Link>
               <Nav.Link href="/timeline">Timeline</Nav.Link>
@@ -43,10 +43,10 @@ function NavComponent(props) {
             </Nav>
           </Navbar.Collapse>
           {user && (
-              <div>
-                <Navbar.Text>Signed in as: <a href={"/profile/" + userData._id}>{user.username} </a></Navbar.Text>
+              <Nav className="me-auto" >
+              <Navbar.Text>Signed in as: <Link to={`/profile/${userData._id}`}>{userData.username}</Link></Navbar.Text>
                 <button className='btn btn-outline-warning float-right' onClick={handleClick}>Log Out</button>
-              </div>
+              </Nav>
             )}
         </Container>
       </Navbar>

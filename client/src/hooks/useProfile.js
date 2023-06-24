@@ -6,7 +6,6 @@ export const useProfile = () => {
     const {user} = useAuthContext()
     const [userData, setUserData] = useState("")
     const [posts, setPosts] = useState([])
-
     const getUserData = async (username) => {
         if (user) {
       
@@ -67,6 +66,27 @@ export const useProfile = () => {
     }
   }
 
+  const setMain = async (champ) => {
+    if (user) {
+  
+      const config = {
+        headers:{
+          'Authorization': `Bearer ${user.token}`
+        },
+      };
+      const data = {
+        champ: champ,
+        id: userData._id
+      };
 
-    return {getUserData,getUserDataById, getPostsFromUser, userData, posts}
+      try {
+        await Axios.post('/users/main', data, config);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  }
+
+
+    return {getUserData,getUserDataById, getPostsFromUser, setMain, userData, posts}
 }

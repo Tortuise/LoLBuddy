@@ -11,15 +11,11 @@ export const useRegister= () => {
         setIsLoading(true)
         setError(null)
         try {
-            console.log(username,password)
-            console.log('connecting to:'+process.env.REACT_APP_API_URL);
             const response = await Axios.post("/auth/register",{username, password} )
-            
-            
             const json = response.data
             // save user to local storage
             localStorage.setItem('user', JSON.stringify(json))
-            console.log(localStorage.getItem('user'))
+            //console.log(localStorage.getItem('user'))
             // update the auth context
             
             dispatch({type: 'LOGIN', payload: json})

@@ -21,7 +21,7 @@ const MatchCard = (props) => {
     return (
     <li> 
       <img 
-        src= {"http://ddragon.leagueoflegends.com/cdn/13.12.1/img/champion/" + data.data.championName + ".png"}
+        src= {"https://ddragon.leagueoflegends.com/cdn/13.12.1/img/champion/" + data.data.championName + ".png"}
         height={20}
         width={20}
       />

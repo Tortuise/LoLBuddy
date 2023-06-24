@@ -29,5 +29,5 @@ yarn-error.log*
 config/default.json
 
 todo.txt
-/uploads
+./uploads
 gamedata.json

@@ -49,7 +49,7 @@ const Followers = () => {
 
     return (
            
-    <div className='Followers'>
+    <div className='Page'>
         <div className='container'>
             <NavComponent fixed="top" />
             <h1> User Search</h1>

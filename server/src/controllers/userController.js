@@ -25,11 +25,8 @@ const registerUser = async (req, res) => {
     const {username, password} = req.body
     
     try {
-        console.log('test server run registerUser');
         const user = await User.register(username, password)
-        console.log('register authenticated');
         const token = createToken(user._id)
-        console.log('token created');
         res.status(200).json({username, token})
     } catch (error) {
         res.status(400).json({error: error.message})
@@ -99,4 +96,14 @@ const getFollowers = async (req, res) => {
         console.log({err:err + ' error getting followers'});
     }
 }
-module.exports = {loginUser, registerUser, updatePassword, setPlayerData, getUser, addUser, getFollowers}
+
+// set main champion of user
+const setMain = async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.body.id, {Main:req.body.champ});
+        res.status(200).json(user);
+    } catch (e) {
+        console.log({err:err + ' error setting main'});
+    }
+}
+module.exports = {loginUser, registerUser, updatePassword, setPlayerData, getUser, addUser, getFollowers, setMain}

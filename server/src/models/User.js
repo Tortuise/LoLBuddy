@@ -40,6 +40,9 @@ const UserSchema = new mongoose.Schema({
 	Likes: {
 		type: [String],
 	},
+	Main: {
+		type: String,
+	},
 });
 
 // static register method

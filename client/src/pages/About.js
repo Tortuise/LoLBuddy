@@ -8,7 +8,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 const About = () => {
     const { user } = useAuthContext()
     return (
-        <div>
+        <div className='Page'>
             <NavComponent fixed="top" />
             <Link to='https://github.com/Tortuise/Mern_app' className='btn float-left'>
                 <img

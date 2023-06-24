@@ -21,7 +21,7 @@ const Register = () => {
     };
 
     return (
-        <div>
+        <div className='Page'>
             <Link to='/login' className='btn btn-outline-warning float-right'> Already have an account? </Link>
             <form className="register" onSubmit={handleSubmit}>
                 <h3>Register</h3>

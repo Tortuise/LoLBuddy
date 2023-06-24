@@ -49,6 +49,10 @@ router.get('/:id', (req, res) => {
 router.get('/', userController.getUser)
 
 
+// @route POST api/users
+// @description add main
+// @access Public
+router.post('/main', userController.setMain);
 
 // @route GET api/users
 // @description add/save user

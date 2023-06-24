@@ -19,7 +19,7 @@ const Login = () => {
     };
     
     return (
-        <div>
+        <div className='LoginUser'>
             <div className='col-md-11'>
                 <Link to='/register' className='btn btn-outline-warning float-right'> Register </Link>
             </div>

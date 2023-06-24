@@ -12,7 +12,7 @@ const FriendItem = (props) => {
         { friendData && 
         <div>
             <img
-            src= {"http://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/" + friendData.ProfileIconId +".png"}
+            src= {"https://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/" + friendData.ProfileIconId +".png"}
             alt='Users'
             height={200}
             />

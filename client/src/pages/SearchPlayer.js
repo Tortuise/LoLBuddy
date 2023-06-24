@@ -92,7 +92,7 @@ const SearchPlayer = (props) => {
     }
 
     return (
-        <div className='Search'>
+        <div className='SearchPlayer'>
             <div className='container'>
                 <h1> League of Legends Search</h1>
                 <input type='text' onChange={onChange}></input>

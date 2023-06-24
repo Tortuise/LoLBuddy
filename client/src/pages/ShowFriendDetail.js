@@ -5,6 +5,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { useFriends } from '../hooks/useFriends';
 import FriendItem from '../components/FriendItem';
 import MatchCard from '../components/MatchCard';
+import NavComponent from '../components/NavBar'
 
 function ShowFriendDetails(props) {
   const {findMatches, findFriend, deleteFriend, isLoading, error, friendData, matchData, isLoadingMatch, errorMatch} = useFriends();
@@ -52,7 +53,8 @@ function ShowFriendDetails(props) {
   
 
   return (
-    <div className='ShowFriendDetails'>
+    <div className='Page'>
+      <NavComponent fixed="top" />
       <div className='container'>
         <div className='row'>
           <div className='col-md-10 m-auto'>

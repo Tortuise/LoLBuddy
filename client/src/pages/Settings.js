@@ -30,7 +30,7 @@ const Settings = () => {
     };
 
     return (
-        <div>
+        <div className='Page'>
             <NavComponent fixed="top" />
             <form noValidate onSubmit={onSubmit}>
             <div className='form-group'>

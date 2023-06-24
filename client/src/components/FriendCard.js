@@ -12,7 +12,7 @@ const FriendCard = (props) => {
       {friend ?
       <>
       <img
-        src= {"http://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/" + friend.ProfileIconId +".png"}
+        src= {"https://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/" + friend.ProfileIconId +".png"}
         alt='Icon'
         height={200}
       />
