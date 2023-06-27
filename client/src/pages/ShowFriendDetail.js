@@ -53,7 +53,7 @@ function ShowFriendDetails(props) {
   
 
   return (
-    <div className='Page'>
+    <div className='page'>
       <NavComponent fixed="top" />
       <div className='container'>
         <div className='row'>

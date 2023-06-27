@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
+import NavComponent from '../components/NavBar';
 
 const SearchPlayer = (props) => {
     const [searchText, setSearchText] = useState("")
@@ -92,7 +93,8 @@ const SearchPlayer = (props) => {
     }
 
     return (
-        <div className='SearchPlayer'>
+        <div className='page'>
+            <NavComponent fixed="top" />
             <div className='container'>
                 <h1> League of Legends Search</h1>
                 <input type='text' onChange={onChange}></input>

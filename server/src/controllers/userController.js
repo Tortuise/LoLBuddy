@@ -3,16 +3,19 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken')
 require('dotenv').config();
 
-const createToken = (_id) => {
+const createToken = (_id, checked) => {
+    if (checked) {
+        return jwt.sign({_id}, process.env.JWT_SECRET, {expiresIn: '30d'})
+    }
     return jwt.sign({_id}, process.env.JWT_SECRET, {expiresIn: '3d'})
 }
 
 // login user
 const loginUser = async (req, res) => {
-    const {username, password} = req.body
+    const {username, password, checked} = req.body
     try {
         const user = await User.login(username, password)
-        const token = createToken(user._id)
+        const token = createToken(user._id, checked)
         res.status(200).json({username, token})
     } catch (error) {
         res.status(400).json({error: error.message})
@@ -100,10 +103,10 @@ const getFollowers = async (req, res) => {
 // set main champion of user
 const setMain = async (req, res) => {
     try {
-        const user = await User.findByIdAndUpdate(req.body.id, {Main:req.body.champ});
+        const user = await User.findByIdAndUpdate(req.body.id, {Main:req.body.champ.label});
         res.status(200).json(user);
     } catch (e) {
-        console.log({err:err + ' error setting main'});
+        console.log({err:e + ' error setting main'});
     }
 }
 module.exports = {loginUser, registerUser, updatePassword, setPlayerData, getUser, addUser, getFollowers, setMain}

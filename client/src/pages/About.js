@@ -8,9 +8,9 @@ import { useAuthContext } from '../hooks/useAuthContext';
 const About = () => {
     const { user } = useAuthContext()
     return (
-        <div className='Page'>
+        <div className='page'>
             <NavComponent fixed="top" />
-            <Link to='https://github.com/Tortuise/Mern_app' className='btn float-left'>
+            <Link to='https://github.com/Tortuise/Mern_app' className='btn'>
                 <img
                  src='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
                  style={{
@@ -20,6 +20,8 @@ const About = () => {
                   }}>
                 </img>
             </Link>
+            <p> Github</p>
+            
         </div>
         
         

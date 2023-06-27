@@ -38,7 +38,7 @@ function ShowUsers() {
   
 
   return (
-    <div className='ShowUsers'>
+    <div className='show-users'>
       <NavComponent user={user} fixed="top" />
       <div className='container'>
         <div className='row'>
@@ -58,7 +58,6 @@ function ShowUsers() {
 
             {user && (
               <div>
-                <span>{user.username}</span>
                 <Link to='/search-player' className='btn btn-outline-info float-right'>
                   Search Player
                 </Link>
@@ -66,7 +65,10 @@ function ShowUsers() {
             )}
             <br />
             <br />
-            <UserCard user={userData}/>
+            <div>
+              <UserCard user={userData}/>
+            </div>
+            
             <hr />
           </div>
         </div>

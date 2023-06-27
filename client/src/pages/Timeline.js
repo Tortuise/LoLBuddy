@@ -83,9 +83,9 @@ const Timeline = () => {
 
 
     return (  
-        <div className='Page'>
+        <div className='page'>
+          <NavComponent fixed="top" />
             <div className='container'>
-                <NavComponent fixed="top" />
                 <h1> Timeline</h1>
                 <label>Post text:</label>
                 <br></br>
@@ -106,7 +106,7 @@ const Timeline = () => {
             </div>
             {followersError && <div className='error'>{followersError}</div>}
             {posts}
-            {followersLoading && <p>Loading...</p>}
+            
         </div>       
         )
 }

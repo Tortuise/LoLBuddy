@@ -7,11 +7,11 @@ export const useLogin= () => {
     const [isLoading, setIsLoading] = useState(null)
     const {dispatch} = useAuthContext()
     
-    const login = async ({username, password}) => {
+    const login = async ({username, password, checked}) => {
         setIsLoading(true);
         setError(null);
         try {
-            const response = await Axios.post("/auth/login",{username, password} )
+            const response = await Axios.post("/auth/login",{username, password, checked} )
             
             
             const json = response.data;

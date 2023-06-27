@@ -49,9 +49,9 @@ const Followers = () => {
 
     return (
            
-    <div className='Page'>
+    <div className='page'>
+        <NavComponent fixed="top" />
         <div className='container'>
-            <NavComponent fixed="top" />
             <h1> User Search</h1>
             <input type='text' onChange={onChange}></input>
             <button onClick={e => searchForUser(e)}> Search User </button>
