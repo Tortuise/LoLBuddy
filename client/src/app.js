@@ -15,6 +15,7 @@ import Followers from './pages/Followers';
 import Timeline from './pages/Timeline';
 import ShowUsers from './pages/ShowUsers';
 import Settings from './pages/Settings';
+import Landing from './pages/Landing';
 
 const App = () => {
   const { user } = useAuthContext()
@@ -35,6 +36,7 @@ const App = () => {
           <Route path='/followers' element={<Followers/>} />
           <Route path='/timeline' element={<Timeline/>} />
           <Route path='/settings' element={<Settings/>} />
+          <Route path='/landing' element={<Landing/>} />
         </Routes>
       </div>
     </Router>

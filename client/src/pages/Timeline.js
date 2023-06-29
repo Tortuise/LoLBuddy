@@ -1,12 +1,9 @@
 import React , {useState , useEffect} from 'react'
-import axios from "axios";
 import NavComponent from '../components/NavBar'
-import UserCard from '../components/UserCard'
 import PostCard from '../components/PostCard'
 
 import { useProfile } from '../hooks/useProfile';
 import { useAuthContext } from '../hooks/useAuthContext';
-import { useAddUser } from '../hooks/useAddUser';
 import { useFollowers } from '../hooks/useFollowers';
 import { usePosts } from '../hooks/usePosts';
 
@@ -86,26 +83,39 @@ const Timeline = () => {
         <div className='page'>
           <NavComponent fixed="top" />
             <div className='container'>
+              <div className='timeline'>
                 <h1> Timeline</h1>
-                <label>Post text:</label>
+                <hr></hr>
+                <h3>
+                  <label>Post text:</label>
+                </h3>
+                <div className='timeline-post'>
+                  <img 
+                  className='postcard_icon'
+                  src={"https://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/" + userData.ProfileIconId +".png"}
+                ></img>
+                <input type='text post' placeholder="Send a message" onChange={onChange} name='text' value={postText.text}></input>
+                </div>
+                
+                
                 <br></br>
-                <input type='text post' onChange={onChange} name='text' value={postText.text}></input>
-                <br></br>
-                <label>Select Image with Post (optional):</label>
+                <label><img src='https://cdn-icons-png.flaticon.com/128/4131/4131814.png' height={50}/></label>
                 <input type="file"
                   id="image" name="image"
                   accept="image/png, image/jpeg"
                   onChange={handleUpload}
                   >
-                
                 </input>
                 {image.preview && <img src={image.preview} width='100' height='100' />}
                 {error && <div className='error'>{error}</div>}
-                <br></br>
-                <button onClick={e => postSubmit(e)}> Post </button>
+                <button className='btn btn-primary' onClick={e => postSubmit(e)}> Post </button>
+                <hr></hr>
+                {followersError && <div className='error'>{followersError}</div>}
+                {posts}
+              </div>
+                
             </div>
-            {followersError && <div className='error'>{followersError}</div>}
-            {posts}
+            
             
         </div>       
         )

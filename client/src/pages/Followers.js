@@ -52,20 +52,25 @@ const Followers = () => {
     <div className='page'>
         <NavComponent fixed="top" />
         <div className='container'>
-            <h1> User Search</h1>
-            <input type='text' onChange={onChange}></input>
-            <button onClick={e => searchForUser(e)}> Search User </button>
-        </div>
-        {searched ? <>{userData != null ? 
-        <><h2>User found</h2>
-        <img width='100' height='100' src ={"http://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/" + userData.ProfileIconId +".png"}></img>
-        <h2>Name: {userData.username}</h2>
-        {added ? <><p>User added</p></> : <><button onClick={e=>addFollower(e)}>Add as Follower</button></>}</> 
-        : <><h1>No user found</h1></>}</>:<></>}   
-        <div className='FollowerList'>
+            <div className='user-search'>
+                <h1> User Search</h1>
+                <input type='text' onChange={onChange}></input>
+                <button className='btn btn-primary' onClick={e => searchForUser(e)}> Search User </button>
+                {searched ? <>{userData != null ? 
+                <><h2>User found</h2>
+                <hr></hr>
+                <img width='100' height='100' src ={"http://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/" + userData.ProfileIconId +".png"}></img>
+                <h2>Name: {userData.username}</h2>
+                {added ? <><p>User added</p></> : <><button className='btn btn-success' onClick={e=>addFollower(e)}>Add as Follower</button></>}</> 
+                : <><h1>No user found</h1></>}</>:<></>}   
+                <div className='FollowerList'>
+                    <div className='center'><h2>Following</h2></div>
+                    <hr></hr>
+                    <div className='list'>{followers}</div>
+                </div>
+            </div>
             
-        </div>
-        <div className='list'>{followers}</div>
+        </div>  
     </div>
         
     )

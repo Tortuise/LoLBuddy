@@ -33,37 +33,42 @@ const PostCard = (props) => {
 
   return (
     <div className='postcard-container'>
-    { postdata != null ?
-    <>
-    <div>
-      {postdata.username && 
-      <h3 className='postcard-username'>
-        <img 
-          className='postcard_icon'
-          src={"https://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/" + postdata.ProfileIconId +".png"}
+      { postdata != null ?
+      <>
+      <div>
+        {postdata.username && 
+        <h3 className='postcard-username'>
+          <img 
+            className='postcard_icon'
+            src={"https://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/" + postdata.ProfileIconId +".png"}
+          ></img>
+          <Item/>
+        </h3>
+      }
+      </div>
+      {(postdata.createdAt) && 
+        <p>Posted at {postdata.createdAt.split('T')[0]}</p>
+      }
+      <hr></hr>
+      {postdata.Img && 
+        <img
+          className='postcard-img'
+          src={data}
+          alt='Post'
+          height={200}
         ></img>
-        <Item/>
-      </h3>
-    }
-    </div>
-    {(postdata.createdAt) && 
-      <p style={{textAlign: 'right'}}>Posted at {postdata.createdAt.split('T')[0]}</p>
-    }
-    {postdata.Img && 
-      <img
-        src={data}
-        alt='Post'
-        height={200}
-      ></img>
-    }
-    {postdata.Text && <p style={{padding: 5, }}> {postdata.Text}</p>}
-    <button onClick={onClick}>👍</button> {(postdata.Likes) && <p>{likes}</p>}
-    {state && <p>{state.msg}</p>}
-    </>
-    : <>
-    <p>No Post data</p>
-    </>
-    }
+      }
+      {postdata.Text && <p> {postdata.Text}</p>}
+      <div className='likes'>
+        <button onClick={onClick}>👍</button> <a>{likes}</a>
+      </div>
+      
+      {state && <p>{state.msg}</p>}
+      </>
+      : <>
+      <p>No Post data</p>
+      </>
+      }
     </div>
   );
 };

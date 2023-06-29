@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select'
-
+import '../App.css';
 const Dialog = (props) => {
     let show = props.show;
     if (!show) {
@@ -22,7 +22,7 @@ const Dialog = (props) => {
                     <span>{champ.label}</span>
                   </div>
                   )} onChange={handleSelect} />
-              <button onClick={onClose}>
+              <button className='margin btn btn-primary' onClick={onClose}>
                 close
             </button>
           </div>

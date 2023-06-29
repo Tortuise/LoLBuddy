@@ -96,29 +96,35 @@ const SearchPlayer = (props) => {
         <div className='page'>
             <NavComponent fixed="top" />
             <div className='container'>
-                <h1> League of Legends Search</h1>
-                <input type='text' onChange={onChange}></input>
-                <button onClick={e => searchForPlayer(e)}> Search </button>
-                <div className='col-md-11'>
-                        <Link
-                        to='/'
-                        className='btn btn-outline-warning float-right'
-                        >
-                        Back to user list
-                        </Link>
+                <div className='search-player'>
+                    <h1> League of Legends Search</h1>
+                    <input type='text' onChange={onChange}></input>
+                    <button className='btn btn-primary' onClick={e => searchForPlayer(e)}> Search </button>
+                    <div className='col-md-11'>
+                            <Link
+                            to='/'
+                            className='btn btn-outline-primary float-right'
+                            >
+                            Back to user list
+                            </Link>
+                    </div>
+
+                    {JSON.stringify(playerData) != '{}' ? 
+                    <><h2>Player data found</h2>
+                    <hr></hr>
+                    <img width='100' height='100' src ={"http://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/" + playerData.profileIconId +".png"}></img>
+                    <h2>Name: {playerData.name}</h2>
+                    <h2>Level: {playerData.summonerLevel}</h2>
+                    <hr></hr>
+                    <button className='btn btn-primary' onClick={e=>setProfileData(e)}> Set as profile</button>
+                    <button className='btn btn-success' onClick={e=>addFriend(e)}>Add as Friend</button>
+                    </>
+                    : <><h1>No player found</h1></>
+                    }  
                 </div>
-            </div>
-            {JSON.stringify(playerData) != '{}' ? 
-            <><h2>Player data found</h2>
-            <img width='100' height='100' src ={"http://ddragon.leagueoflegends.com/cdn/13.10.1/img/profileicon/" + playerData.profileIconId +".png"}></img>
-            <h2>Name: {playerData.name}</h2>
-            <h2>Level: {playerData.summonerLevel}</h2>
-            <button onClick={e=>setProfileData(e)}> Set as profile</button>
-            <button onClick={e=>addFriend(e)}>Add as Friend</button>
-            </>
                 
-            : <><h1>No player found</h1></>
-            }
+            </div>
+            
         </div>
     )
 }

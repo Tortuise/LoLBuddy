@@ -44,7 +44,7 @@ function ShowUsers() {
         <div className='row'>
           <div className='col-md-12'>
             <br />
-            <h2 className='display-4 text-center'>Users List</h2>
+            <h2>Your Profile</h2>
           </div>
           
           
@@ -68,7 +68,7 @@ function ShowUsers() {
             <div>
               <UserCard user={userData}/>
             </div>
-            
+            <h3>LoL Friends</h3>
             <hr />
           </div>
         </div>

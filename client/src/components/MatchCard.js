@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../App.css';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { Container } from '@mui/material';
 
@@ -26,6 +25,10 @@ const MatchCard = (props) => {
         width={20}
       />
       <a>{data.data.summonerName}</a>
+      <div className='score'>
+        <a >{' '}{data.data.kills}/{data.data.deaths}/{data.data.assists}</a>
+      </div>
+      
     </li>
     )
   }
@@ -35,13 +38,19 @@ const MatchCard = (props) => {
     const team2 = match.info.participants.slice(5,10);
     const listTeam1 = team1.map((data,k) => <PlayerData data={data} key={k}/>)
     const listTeam2 = team2.map((data,k) => <PlayerData data={data} key={k}/>)
-    return <div className="table"><ul>{listTeam1}</ul><ul>{listTeam2}</ul></div>
+    return (
+      <div className='match'>
+        <ul>{listTeam1}</ul>
+        <hr></hr>
+        <ul>{listTeam2}</ul>
+      </div>
+    )
   }
 
   return (
     
     <div className='match-container'>
-      <div className='desc'>
+      <div>
         <a>{match.info.gameMode}</a>
         <PlayerInfo/>
         {win ? <a>WON</a> : <a>Lost lmao</a>}
