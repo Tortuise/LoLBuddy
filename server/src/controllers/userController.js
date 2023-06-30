@@ -68,10 +68,11 @@ const getUser = (req, res) => {
 
 // add follower (another user) to user
 const addUser = async (req, res) => {
-	const user = req.query.username
+	const username = req.query.username
 	try {
-        const follower = await User.findOne({username: req.body.username})
-        await User.findOneAndUpdate({username: user},{$push:{followers:follower._id}})
+        const follower = await User.findOne({username: req.body.username});
+        const user = await User.findOneAndUpdate({username: username},{$push:{followers:follower._id}});
+        await User.findOneAndUpdate({username: req.body.username},{$push:{following:user._id}});
 		res.json({ msg: 'Follower added successfully'})
 	} catch (err) {
 		console.log({err:err + ' error adding follower'})
@@ -85,19 +86,62 @@ const getFollowers = async (req, res) => {
     try {
         const followers = await User.findOne({username: user}).select('followers')
         const followersData = []
+        if (!followers.followers) {
+            res.json(null);
+            console.log('No one you follow');
+            return;
+        }
 		for (let i = 0; i < followers.followers.length; i++) {
 			try {
 				let follower = await User.findById(followers.followers[i])
 				
 				followersData.push(follower)
 			} catch (err) {
-				console.log('error follower not found' )
+				console.log('error follower not found' );
 			}	
 		}
 		res.status(200).json(followersData)
     } catch (err) {
         console.log({err:err + ' error getting followers'});
+        res.status(404).json(null);
     }
+}
+
+// get all following the user
+const getFollowing = async (req, res) => {
+    const user = req.query.username
+
+    try {
+        const following = await User.findOne({username: user}).select('following')
+        const followersData = []
+		for (let i = 0; i < following.following.length; i++) {
+			try {
+				let follower = await User.findById(following.following[i])
+				
+				followersData.push(follower)
+			} catch (err) {
+				console.log('error followings not found' )
+                res.status(404).json(null);
+			}	
+		}
+		res.status(200).json(followersData)
+    } catch (err) {
+        console.log({err:err + ' error getting followings'});
+        res.status(404).json(null);
+    }
+}
+
+// unfollow follower from user
+const unfollow = async (req, res) => {
+	const username = req.query.username
+	try {
+        const follower = await User.findOne({username: req.body.username});
+        const user = await User.findOneAndUpdate({username: username},{$pull:{followers:follower._id}});
+        await User.findOneAndUpdate({username: req.body.username},{$pull:{following:user._id}});
+		res.json({ msg: 'unfollowed successfully'})
+	} catch (err) {
+		console.log({err:err + ' error unfollowing'})
+	}
 }
 
 // set main champion of user
@@ -109,4 +153,4 @@ const setMain = async (req, res) => {
         console.log({err:e + ' error setting main'});
     }
 }
-module.exports = {loginUser, registerUser, updatePassword, setPlayerData, getUser, addUser, getFollowers, setMain}
+module.exports = {loginUser, registerUser, updatePassword, setPlayerData, getUser, addUser, getFollowers, getFollowing, unfollow, setMain}

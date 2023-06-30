@@ -79,6 +79,9 @@ input {
     min-height: 100vh;
     color: white;
 }
+.show-users h3 {
+    margin-top: 1em;
+}
 
 .login-user {
     background-color: rgba(0,0,.125,0.4);
@@ -138,7 +141,7 @@ input {
 }
 .list {
     display: flex;
-    min-height: 100vh;
+    min-height: 80%;
 }
   
 .card-container {
@@ -181,16 +184,26 @@ input {
 }
 .match-component a {
     padding: 1em;
+    color: rgba(160, 155, 140, 1);
+}
+.match-component p {
+    color: rgba(160, 155, 140, 1);
 }
 .match-component button {
     margin: 1em;
+}
+.winrate {
+    color: rgba(160, 155, 140, 1);
+    margin-bottom: 1em;
 }
 .table {
     word-break: break-all;
     display: flex;
     padding: 0;
   }
-  
+.table td {
+    color: rgba(160, 155, 140, 1);
+}
 .desc {
     height: 130px;
     padding: 10px;
@@ -336,6 +349,7 @@ input {
 }
 .user-search button {
     margin-right: 1em;
+    margin-bottom: 4px;
     padding: 2px;
     padding-top: 4px;
 }
@@ -345,6 +359,9 @@ input {
 }
 .user-search img {
     border: 1px solid;
+}
+.user-search h2 {
+    margin-top: 1em;
 }
 .settings {
     margin: 4em;
@@ -364,4 +381,17 @@ input {
     word-wrap: break-word;
     word-break: break-all;
     height: 40px;
+}
+.show-friend-detail button {
+    margin: 1em 1em 1em 0;
+}
+.summoner-info {
+    display: flex;
+    justify-content: center;
+}
+.summoner-info table {
+    margin: 0;
+}
+.summoner-info img {
+    border: 2px solid;
 }

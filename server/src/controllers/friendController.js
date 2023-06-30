@@ -42,7 +42,7 @@ const createFriend = async (req, res) => {
 	try {
 		// if friend already exist in database
 		const exists = await Friend.exists({SummonerName: req.body.SummonerName})
-		// check if already added
+		
 		// add to user
 		if (exists) {
 			const friend = await Friend.findOne({SummonerName: req.body.SummonerName})

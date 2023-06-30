@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import './App.css';
 import { useAuthContext } from './hooks/useAuthContext';
 
-import CreateUser from './components/CreateUser';
-import UpdateUser from './components/UpdateUser';
 import ShowFriendDetail from './pages/ShowFriendDetail';
 import SearchPlayer from './pages/SearchPlayer';
 import Login from './pages/LoginUser';
@@ -26,8 +24,6 @@ const App = () => {
         <Routes>
           <Route exact path='/' element={user ? <ShowUsers /> : <Navigate to='/login'/>} />
           <Route path='/search-player' element={<SearchPlayer/>} />
-          <Route path='/create-user' element={<CreateUser />} />
-          <Route path='/edit-user/:id' element={<UpdateUser />} />
           <Route path='/show-friend/:id' element={<ShowFriendDetail />} />
           <Route path='/login' element={!user ? <Login/> : <Navigate to='/'/>} />
           <Route path='/register' element={<Register/>} />
