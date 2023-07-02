@@ -1,14 +1,20 @@
 import React , {useState} from 'react'
-import NavComponent from '../components/NavBar'
-import { Link } from 'react-router-dom';
+import LandingNav from '../components/LandingSections/LandingNav';
+import Section1 from '../components/LandingSections/Section1';
+import Section2 from '../components/LandingSections/Section2';
+import Section3 from '../components/LandingSections/Section3';
+import Section4 from '../components/LandingSections/Section4';
+import { Link as LinkR} from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
+import "../App.css";
 
 const Landing = () => {
     const { user } = useAuthContext()
     // header/ 3 cards / get started/ login 
 
-    const handleClickScroll = () => {
-        const element = document.getElementById('section-1');
+    const handleClickScroll = (e) => {
+        const element = document.getElementById(`section-${e}`);
+        //console.log(element);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
@@ -16,22 +22,19 @@ const Landing = () => {
 
     return (
         <div className='page'>
-            <Link to='/login' className='btn btn-outline-warning float-right'> Login? </Link>
+            <LandingNav />
             <div className='container-landing'>
-                <div className='landing-card-1'>
-                    <button onClick={handleClickScroll}>
-                        <img src='https://cdn-icons-png.flaticon.com/128/2722/2722987.png' height={20}/>
-                    </button>
-
+                <div>
+                    <Section1 onClick={() => handleClickScroll(2)}/>
                 </div>
-                <div className='landing-card-2' id='section-1'>
-                    
+                <div>
+                    <Section2  onClick={() => handleClickScroll(3)}/>
                 </div>
-                <div className='landing-card-3' id='section-2'>
-                    
+                <div>
+                    <Section3  onClick={() => handleClickScroll(4)}/>
                 </div>
-                <div className='landing-card-4' id='section-3'>
-                <Link to='/register' className='btn btn-outline-success'> Get Started </Link>
+                <div>
+                    <Section4 />
                 </div>
             </div>
         </div>

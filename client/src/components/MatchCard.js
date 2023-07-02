@@ -50,6 +50,7 @@ const MatchCard = (props) => {
     ));
     return (
       <div className="match">
+        <h4>{match.info.gameMode}</h4>
         <ul>{listTeam1}</ul>
         <hr></hr>
         <ul>{listTeam2}</ul>
@@ -59,8 +60,7 @@ const MatchCard = (props) => {
 
   return (
     <div className="match-container">
-      <div className="winrate">
-        <a>{match.info.gameMode}</a>
+      <div>
         <PlayerInfo />
         {win ? <a>WON</a> : <a>Lost lmao</a>}
       </div>

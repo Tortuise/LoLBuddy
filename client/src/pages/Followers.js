@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import NavComponent from "../components/NavBar";
 import UserCard from "../components/UserCard";
 
 import { useProfile } from "../hooks/useProfile";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useFollowers } from "../hooks/useFollowers";
+import { useUser } from "../hooks/useUserFriends";
 
 const Followers = () => {
   const { user } = useAuthContext();
@@ -14,6 +14,7 @@ const Followers = () => {
   const [added, setAdded] = useState();
   const { getUserData, userData, getAccUser, accUser } = useProfile();
   const { getUserFollowers, userFollowers , addUser} = useFollowers();
+  const { getUserFollowing, userFollowing } = useUser();
 
   const onChange = (e) => {
     setSearched(null);
@@ -26,6 +27,7 @@ const Followers = () => {
       setSearched(null);
       setAdded(null);
       getUserFollowers(user.username);
+      getUserFollowing(user.username);
       getAccUser();
     }
   }, [user]);
@@ -45,6 +47,12 @@ const Followers = () => {
       ? <p>No one you are currently following</p>
       : userFollowers.map((follower, k) => (
           <UserCard user={follower} key={k} />
+        ));
+  const following =
+    userFollowing.length === 0
+      ? <p>No current following</p>
+      : userFollowing.map((following, k) => (
+          <UserCard user={following} key={k} />
         ));
 
   return (
@@ -109,8 +117,8 @@ const Followers = () => {
                 <h2>Users that follow you</h2>
                 </div>
                 <hr></hr>
-                {userData.following ? (
-                <div className="list">{followers}</div>
+                {(userFollowing) ? (
+                <div className="list">{following}</div>
                 ) : (
                 <p>No followers</p>
                 )}

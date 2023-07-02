@@ -63,13 +63,12 @@ function ShowFriendDetails(props) {
       }
     }
 
-    return <a>winrate = {(wins / matchData.length) * 100}%</a>;
+    return <h4>Winrate = {(wins / matchData.length) * 100}%</h4>;
   }
 
   return (
     <div className="page">
       <NavComponent fixed="top" />
-      <div className="container">
         <div className="show-friend-detail">
           <div className="col-md-10 m-auto">
           </div>
@@ -127,7 +126,6 @@ function ShowFriendDetails(props) {
             </div>
           )}
         </div>
-      </div>
     </div>
   );
 }

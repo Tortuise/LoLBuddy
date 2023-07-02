@@ -39,7 +39,7 @@ function ShowUsers() {
 
   const friends =
     userFriendsData.length === 0
-      ? <p>there is no friend record</p>
+      ? <p>There is no friend record</p>
       : userFriendsData.map((friend, k) => (
           <FriendCard user={friend} key={k} />
         ));
@@ -61,7 +61,7 @@ function ShowUsers() {
         <div className="row">
           <div className="col-md-12">
             <br />
-            <h2>Your Profile</h2>
+            <h1>Your Profile</h1>
           </div>
 
           <div className="col-md-11">
@@ -84,7 +84,11 @@ function ShowUsers() {
             <br />
             <br />
             <div>
-              <UserCard user={userData} />
+              {(userData && userData.PUUID) ? <UserCard user={userData} />: 
+              <><Link to={`/profile/${userData._id}`}>{userData.username}</Link>
+              <p>No League of Legends Profile Set</p>
+              <Link to={`/search-player`}>Find your Summoner Profile</Link></>}
+              
             </div>
             <h3>LoL Friends</h3>
             <hr />

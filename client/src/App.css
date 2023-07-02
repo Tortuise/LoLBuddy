@@ -154,7 +154,7 @@ input {
     overflow: hidden;
 }
 .match-container {
-    width: 400px;
+    width: 600px;
     height: 400px;
     border: 1px solid rgba(0,0,.125);
     margin: 0 auto;
@@ -165,8 +165,11 @@ input {
 }
 .match {
     padding-top: 10px;
-    
+    color: rgba(160, 155, 140, 1);
+    margin-bottom: 1em;
+    font-size: 1.1em;
 }
+
 .match ul {
     text-align: left;
     list-style-type: none;
@@ -195,6 +198,7 @@ input {
 .winrate {
     color: rgba(160, 155, 140, 1);
     margin-bottom: 1em;
+    margin-left: 300px;
 }
 .table {
     word-break: break-all;
@@ -205,13 +209,15 @@ input {
     color: rgba(160, 155, 140, 1);
 }
 .desc {
-    height: 130px;
+    height: 140px;
     padding: 10px;
 }
   
 .desc h2 {
     font-size: 1em;
     font-weight: 400;
+    margin: 0;
+    margin-bottom: 1em;
 }
   
 .desc h3, p {
@@ -221,12 +227,15 @@ input {
 .desc h3 {
     color: #6c757d;
     font-size: 1em;
-    padding: 10px 0 10px 0;
+    padding: 2px;
+    margin: 0;
 }
-
+.desc a {
+    font-size: 1.5em;
+}
 .postcard-container {
     background: #212529;
-    width: 500px;
+    width: 800px;
     border: 1px solid rgba(0,0,.125);
     margin: 0 auto;
     border-radius: 5px;
@@ -320,7 +329,6 @@ input {
 }
 .landing-card-1 {
     background-color: rgba(0,0,.125,0.4);
-    background-image: url("https://cdn.discordapp.com/attachments/189958573571309568/1123497347566018641/image.png");
     background-blend-mode: multiply;
     height: 100vh;
     width: 100%;
@@ -328,12 +336,71 @@ input {
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
 }
-
+.landing-card-2 {
+    background-color: rgba(109, 109, 109, 0.3);
+    background-blend-mode: multiply;
+    height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+.landing-card-3 {
+    background-color: rgba(0,0,.125,0.2);
+    background-blend-mode: multiply;
+    height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+.landing-card-4 {
+    background-color: rgba(109, 109, 109, 0.3);
+    background-blend-mode: multiply;
+    height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
 .landing-card-1 button {
     position: absolute;
-    right:    0;
+    right:    50%;
     bottom:   0;
+}
+.landing-card-2 button {
+    position: absolute;
+    right:    50%;
+
+}
+.landing-card-3 button {
+    position: absolute;
+    right:    50%;
+
 }
 .search-player input {
     margin-right: 20px;
@@ -383,15 +450,40 @@ input {
     height: 40px;
 }
 .show-friend-detail button {
-    margin: 1em 1em 1em 0;
+    margin: 1em 1em 1em 300px;
 }
 .summoner-info {
     display: flex;
     justify-content: center;
+    width: 500px;
+    margin: auto;
 }
 .summoner-info table {
     margin: 0;
 }
 .summoner-info img {
     border: 2px solid;
+}
+.sticky {
+    position: sticky;
+    top: 0;
+}
+.arrow-1{
+    position: absolute;
+    bottom: 80px;
+    right: 50%;
+}
+.arrow {
+    position: absolute;
+    bottom: 10px;
+    right: 50%;
+}
+.arrow:hover {
+    text-shadow: 0 0 10px rgba(160, 155, 140, 1);;
+}
+.landing-img {
+    height: 400px;
+    width: 800px;
+    border: 2px solid rgb( 200, 155, 60);
+    border-radius: 10px;
 }

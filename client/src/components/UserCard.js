@@ -43,9 +43,6 @@ const UserCard = (props) => {
         </>
       ) : (
         <>
-          <Link to={`/profile/${userdata._id}`}>{userdata.username}</Link>
-          <p>No League of Legends Profile Set</p>
-          <Link to={`/search-player`}>Find your Summoner Profile</Link>
         </>
       )}
     </div>
