@@ -22,7 +22,8 @@ const App = () => {
     <Router>
       <div>
         <Routes>
-          <Route exact path='/' element={user ? <ShowUsers /> : <Navigate to='/login'/>} />
+          <Route exact path='/' element={<Landing/>} />
+          <Route path='/home' element={user ? <ShowUsers /> : <Navigate to='/login'/>} />
           <Route path='/search-player' element={<SearchPlayer/>} />
           <Route path='/show-friend/:id' element={<ShowFriendDetail />} />
           <Route path='/login' element={!user ? <Login/> : <Navigate to='/'/>} />
@@ -32,7 +33,6 @@ const App = () => {
           <Route path='/followers' element={<Followers/>} />
           <Route path='/timeline' element={<Timeline/>} />
           <Route path='/settings' element={<Settings/>} />
-          <Route path='/landing' element={<Landing/>} />
         </Routes>
       </div>
     </Router>
