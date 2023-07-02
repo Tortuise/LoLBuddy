@@ -12,7 +12,7 @@ const Section1 = (props) => {
       <h2>LoLBuddy App</h2>
       <br></br>
       <h4>Companion app for League of Legends</h4>
-      <span class="material-symbols-sharp arrow-1" onClick={onClick}>
+      <span className="material-symbols-sharp arrow-1" onClick={onClick}>
         keyboard_double_arrow_down
       </span>
       <img className="landing-img" src="https://cdn.discordapp.com/attachments/189958573571309568/1124955610467811329/image.png"/>

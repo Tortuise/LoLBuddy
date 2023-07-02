@@ -11,7 +11,7 @@ const Section3 = (props) => {
       <h2>Follow Users</h2>
       <h4>Find and follow other users on the app</h4>
       <img className="landing-img" src="https://cdn.discordapp.com/attachments/189958573571309568/1124955071034171392/image.png" />
-      <span class="material-symbols-sharp arrow" onClick={onClick}>
+      <span className="material-symbols-sharp arrow" onClick={onClick}>
         keyboard_double_arrow_down
       </span>
     </div>

@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Section2 = (props) => {
 
     const onClick = (e) => {
@@ -11,7 +11,18 @@ const Section2 = (props) => {
       <h2>Features</h2>
       <h4>Using Riot API you can add your friends from League of Legends</h4>
       <h4>and view their match history.</h4>
-      <span class="material-symbols-sharp arrow" onClick={onClick}>
+      <Link to="https://github.com/Tortuise/Mern_app" className="btn">
+        <img
+          src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+          style={{
+            resizeMode: "contain",
+            height: 50,
+            width: 50,
+            borderRadius: 25,
+          }}
+        ></img> <h4>Github</h4>
+      </Link>
+      <span className="material-symbols-sharp arrow" onClick={onClick}>
         keyboard_double_arrow_down
       </span>
       <img className="landing-img" src="https://cdn.discordapp.com/attachments/189958573571309568/1124951211091710002/image.png" />
