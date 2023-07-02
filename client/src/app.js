@@ -26,7 +26,7 @@ const App = () => {
           <Route path='/home' element={user ? <ShowUsers /> : <Navigate to='/login'/>} />
           <Route path='/search-player' element={<SearchPlayer/>} />
           <Route path='/show-friend/:id' element={<ShowFriendDetail />} />
-          <Route path='/login' element={!user ? <Login/> : <Navigate to='/'/>} />
+          <Route path='/login' element={!user ? <Login/> : <Navigate to='/home'/>} />
           <Route path='/register' element={<Register/>} />
           <Route path='/profile/:id' element={<Profile/>} />
           <Route path='/about' element={<About/>} />
