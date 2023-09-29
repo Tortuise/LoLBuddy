@@ -11,7 +11,7 @@ const Section4 = (props) => {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,700,0,200" />
       <h2>Timeline</h2>
       <h4>Post on your timeline for your followers and see their posts.</h4>
-      <img className="landing-img" src="https://cdn.discordapp.com/attachments/189958573571309568/1124958681147117598/image.png" />
+      <img className="landing-img" src="https://photos.app.goo.gl/hzrfhNMmU3PDxJvP7" />
       <br></br>
       <LinkR to='/register' className='btn btn-outline-warning'> Get Started </LinkR>
     </div>

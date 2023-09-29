@@ -34,7 +34,7 @@ function NavComponent(props) {
       data-bs-theme="dark"
     >
       <Container className="ml-2 mr-2">
-        <Navbar.Brand href="/">LoLBuddy</Navbar.Brand>
+        <Navbar.Brand href="/home">LoLBuddy</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

@@ -24,7 +24,9 @@ const Settings = () => {
       newPassword: data.newPassword,
     };
     changePassword(passwords);
-    setUpdated(true);
+    if (!error) {
+      setUpdated(true);
+    }
   };
 
   return (

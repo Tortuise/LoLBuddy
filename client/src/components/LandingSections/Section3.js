@@ -10,7 +10,7 @@ const Section3 = (props) => {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,700,0,200" />
       <h2>Follow Users</h2>
       <h4>Find and follow other users on the app</h4>
-      <img className="landing-img" src="https://cdn.discordapp.com/attachments/189958573571309568/1124955071034171392/image.png" />
+      <img className="landing-img" src="https://photos.app.goo.gl/Xg51sYU5nUa1cDLa6" />
       <span className="material-symbols-sharp arrow" onClick={onClick}>
         keyboard_double_arrow_down
       </span>
