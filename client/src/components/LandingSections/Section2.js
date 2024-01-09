@@ -25,7 +25,8 @@ const Section2 = (props) => {
       <span className="material-symbols-sharp arrow" onClick={onClick}>
         keyboard_double_arrow_down
       </span>
-      <img className="landing-img" src="https://photos.app.goo.gl/TQN3p4spEp2N2NTU8" />
+      <img className="landing-img" src="https://drive.google.com/uc?export=view&id=1g1mDZJg_i7nhozTvEBM0eaca1OqWuqv8" />
+      
     </div>
   );
 };
